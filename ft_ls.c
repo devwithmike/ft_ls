@@ -6,7 +6,7 @@
 /*   By: mimeyer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/28 08:53:30 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/06/28 11:20:30 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/06/28 14:43:24 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int main(int ac, char **av)
 
     if (dr == NULL)
     {
-        printf("Could not open current directory" );
+        printf("Could not open current directory");
         return 0;
     }
     while ((de = readdir(dr)) != NULL)
