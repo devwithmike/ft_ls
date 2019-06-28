@@ -6,14 +6,14 @@
 /*   By: mimeyer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/28 08:53:30 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/06/28 10:54:10 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/06/28 11:20:30 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include "includes/ft_ls.h"
 
-int main(void)
+int main(int ac, char **av)
 {
 	struct dirent *de;
     DIR *dr = opendir(".");
@@ -24,8 +24,14 @@ int main(void)
         return 0;
     }
     while ((de = readdir(dr)) != NULL)
-    	if (de->d_name[0] != '.')
-        	printf("%s\t", de->d_name);
+    	if (ac == 1)
+    	{
+    		if (de->d_name[0] != '.')
+        		printf("%s\t", de->d_name);
+        }
+    	else
+    		if (ft_strcmp(av[1], "-a") == 0)
+    			printf("%s\t", de->d_name);
     printf("\n");
     closedir(dr);
 	return (0);
