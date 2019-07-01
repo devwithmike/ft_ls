@@ -6,7 +6,7 @@
 /*   By: mimeyer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/28 08:53:30 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/07/01 15:59:05 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/07/01 16:23:06 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,14 @@ int main(int ac, char **av)
     		if	((flags & 2) && (!(flags & 1) && (!(flags & 4) 
     			&& (!(flags & 8)) && (!(flags & 16)))))
     			printf("%s\t", de->d_name);
-
+	if (flags & 1)
+    	printf("The flag l is there... but I ain't handeling that shit yet\n");
+    if (flags & 4)
+    	printf("The flag R is there... but I ain't handeling that shit yet\n");
+    if (flags & 8)
+    	printf("The flag r is there... but I ain't handeling that shit yet\n");
+   	if (flags & 16)
+    	printf("The flag t is there... but I ain't handeling that shit yet\n");
     printf("\n");
     closedir(dr);
 	return (0);
