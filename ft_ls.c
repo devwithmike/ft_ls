@@ -6,14 +6,14 @@
 /*   By: mimeyer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/28 08:53:30 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/07/01 15:19:56 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/07/01 15:22:49 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include "includes/ft_ls.h"
 
-unsigned char		ft_flags(char **av, int ac)
+unsigned char		ft_flags(int ac, char **av)
 {
 	int				i;
 	char			**str;
@@ -69,7 +69,7 @@ int main(int ac, char **av)
 
     unsigned char flags;
 
-    flags = ft_flags(av, ac);
+    flags = ft_flags(ac, av);
 
 	if (flags & 1)
 		printf("Flag l is a go\n");
