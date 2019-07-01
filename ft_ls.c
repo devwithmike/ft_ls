@@ -6,7 +6,7 @@
 /*   By: mimeyer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/28 08:53:30 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/07/01 15:22:49 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/07/01 15:59:05 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,11 @@ unsigned char		ft_flags(int ac, char **av)
 
 int main(int ac, char **av)
 {
-	/*struct dirent *de;
+	unsigned char flags;
+	struct dirent *de;
     DIR *dr = opendir(".");
+
+    flags = ft_flags(ac, av);
 
     if (dr == NULL)
     {
@@ -61,26 +64,11 @@ int main(int ac, char **av)
         		printf("%s\t", de->d_name);
         }
     	else
-    		if (ft_strcmp(av[1], "-a") == 0)
+    		if	((flags & 2) && (!(flags & 1) && (!(flags & 4) 
+    			&& (!(flags & 8)) && (!(flags & 16)))))
     			printf("%s\t", de->d_name);
 
     printf("\n");
-    closedir(dr);*/
-
-    unsigned char flags;
-
-    flags = ft_flags(ac, av);
-
-	if (flags & 1)
-		printf("Flag l is a go\n");
-	if (flags & 2)
-		printf("Flag a is a go\n");
-	if (flags & 4)
-		printf("Flag R is a go\n");
-	if (flags & 8)
-		printf("Flag r is a go\n");
-	if (flags & 16)
-		printf("Flag t is a go\n");
-
+    closedir(dr);
 	return (0);
 }
