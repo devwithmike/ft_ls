@@ -6,7 +6,7 @@
 /*   By: mimeyer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/28 08:53:30 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/07/02 12:06:33 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/07/02 16:04:32 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,13 @@ unsigned char		get_flags(int ac, char **av)
 			{
 				if (**str == 'l')
 					flags |= 1;
-				if (**str == 'a')
+				else if (**str == 'a')
 					flags |= 2;
-				if (**str == 'R')
+				else if (**str == 'R')
 					flags |= 4;
-				if (**str == 'r')
+				else if (**str == 'r')
 					flags |= 8;
-				if (**str == 't')
+				else if (**str == 't')
 					flags |= 16;
 				(*str)++;
 			}
@@ -48,7 +48,25 @@ unsigned char		get_flags(int ac, char **av)
 	return (flags);
 }
 
-int main(int ac, char **av)
+int main (int ac, char **av)
 {
+	unsigned char flags;
+	char **str = NULL;
+	int i;
+
+	i = 2;
+	flags = get_flags(ac, av);
+	while (i < ac)
+	{
+		str = &av[i];
+		if (**str == '-')
+			(*str)++;
+		else
+		{
+			printf("%s\n", *str);
+			(*str)++;
+		}
+		i++;
+	}
 	return (0);
 }
