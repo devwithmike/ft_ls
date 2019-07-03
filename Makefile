@@ -2,8 +2,9 @@ NAME = ft_ls
 
 LIBFT_PATH = ./libft/
 
-SRCS =	./srcs/ft_flags.c \
-		./srcs/ft_ls.c
+SRCS =	./srcs/flags.c \
+		./srcs/ft_ls.c \
+		./srcs/errors.c
 
 FLAGS = -Wall -Werror -Wextra
 INC =  -I ./includes/ft_ls.h -I $(LIBFT_PATH)libft.h

@@ -6,7 +6,7 @@
 /*   By: mimeyer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/28 08:53:30 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/07/03 12:14:06 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/07/03 14:03:36 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,9 @@ void	ft_ls(char *path, unsigned char flags)
 	struct dirent *de;
 
 	DIR *dr = opendir(path);
-	while ((de = readdir(dr)) != NULL)
+	if (check_errors(path) == 1)
+		return;
+    while ((de = readdir(dr)) != NULL)
 		if (!flags)
 		{
 			if (de->d_name[0] != '.')
@@ -41,9 +43,7 @@ int main (int ac, char **av)
 
 	i = 1;
 	flags = get_flags(ac, av);
-	if (flags & 2)
-		ft_putstr("-a");
-	/*if (ac == 1)
+	if (ac == 1)
 		ft_ls(".", flags);
 	else
 		while (i < ac)
@@ -51,7 +51,7 @@ int main (int ac, char **av)
 			if (av[i][0] != '-')
 				ft_ls(av[i],flags);
 			i++;
-		}*/
+		}
 	ft_putchar('\n');
 	return (0);
 }

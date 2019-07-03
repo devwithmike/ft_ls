@@ -1,24 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ls.h                                            :+:      :+:    :+:   */
+/*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mimeyer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/28 09:17:47 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/07/03 14:03:23 by mimeyer          ###   ########.fr       */
+/*   Created: 2019/07/03 13:57:58 by mimeyer           #+#    #+#             */
+/*   Updated: 2019/07/03 14:01:00 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_LS
-# define FT_LS
+#include "../includes/ft_ls.h"
 
-# include "../libft/libft.h"
-# include <dirent.h>
-
-int				check_flags(char *str);
-int				check_errors(char *path);
-unsigned char	get_flags(int ac, char **av);
-void			ft_ls(char *path, unsigned char flags);
-
-#endif
+int		check_errors(char *path)
+{
+	if (errno == 20)
+	{
+		ft_putstr(path);
+		return (1);
+	}
+	return (0);
+}
