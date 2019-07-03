@@ -1,3 +1,6 @@
+#include <stdio.h>
+#include "includes/ft_ls.h"
+
 int main (int ac, char **av)
 {
 unsigned char flags;
