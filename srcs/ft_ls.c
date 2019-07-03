@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_ls.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mimeyer <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: mimeyer <mimeyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/28 08:53:30 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/07/03 14:03:36 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/07/03 16:06:56 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	ft_ls(char *path, unsigned char flags)
 	DIR *dr = opendir(path);
 	if (check_errors(path) == 1)
 		return;
-    while ((de = readdir(dr)) != NULL)
+    while ((de = readdir(dr)))
 		if (!flags)
 		{
 			if (de->d_name[0] != '.')
@@ -34,6 +34,7 @@ void	ft_ls(char *path, unsigned char flags)
     		ft_putstr(de->d_name);
     		ft_putchar('\t');
     	}
+	closedir(dr);
 }
 
 int main (int ac, char **av)
