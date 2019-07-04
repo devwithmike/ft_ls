@@ -6,7 +6,7 @@
 /*   By: mimeyer <mimeyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/28 08:53:30 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/07/04 09:20:49 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/07/04 09:28:18 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	ft_ls(char *path, unsigned char flags)
 	if (check_errors(path) == 1)
 		return;
     while ((de = readdir(dr)))
-		if (!flags)
+		if (!(flags & 2))
 		{
 			if (de->d_name[0] != '.')
 			{
