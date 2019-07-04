@@ -6,7 +6,7 @@
 /*   By: mimeyer <mimeyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/28 08:53:30 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/07/03 16:06:56 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/07/04 09:03:13 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,18 @@ void	ft_ls(char *path, unsigned char flags)
     		ft_putchar('\t');
     	}
 	closedir(dr);
+	dr = opendir(path);
+	while ((de = readdir(dr)))
+		if ((flags & 4) && (de->d_type == 4) && (ft_strcmp(de->d_name, ".") != 0) && (ft_strcmp(de->d_name, "..") != 0))
+		{
+			ft_putstr("\n\n");
+			ft_putstr(path);
+			ft_putchar('/');
+			ft_putstr(de->d_name);
+			ft_putstr(":\n");
+			ft_ls(ft_strjoin(path, ft_strjoin("/", de->d_name)), flags);
+		}
+	closedir(dr);	
 }
 
 int main (int ac, char **av)
