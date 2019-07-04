@@ -6,21 +6,16 @@
 /*   By: mimeyer <mimeyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/28 08:53:30 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/07/04 09:28:18 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/07/04 12:33:22 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include "../includes/ft_ls.h"
 
-void	ft_ls(char *path, unsigned char flags)
+void	basic_print(struct dirent *de, unsigned char flags, DIR *dr)
 {
-	struct dirent *de;
-
-	DIR *dr = opendir(path);
-	if (check_errors(path) == 1)
-		return;
-    while ((de = readdir(dr)))
+	while ((de = readdir(dr)))
 		if (!(flags & 2))
 		{
 			if (de->d_name[0] != '.')
@@ -35,6 +30,17 @@ void	ft_ls(char *path, unsigned char flags)
     		ft_putchar('\t');
     	}
 	closedir(dr);
+}
+
+void	ft_ls(char *path, unsigned char flags)
+{
+	struct dirent *de;
+
+	de = NULL;
+	DIR *dr = opendir(path);
+	if (check_errors(path) == 1)
+		return;
+	basic_print(de, flags, dr);
 	if (flags & 4)
 	{
 		dr = opendir(path);
