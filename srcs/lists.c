@@ -6,7 +6,7 @@
 /*   By: mimeyer <mimeyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/05 12:09:38 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/07/05 12:36:48 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/07/05 13:48:57 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,10 @@ t_dir	*set_list(const char *name)
 
 void	delete_list(t_dir **list)
 {
-	t_dir *current = *list;
+	t_dir *current;
 	t_dir *next;
 
+	current = *list;
 	while (current)
 	{
 		next = current->next;
@@ -54,6 +55,7 @@ void	list_add(t_dir **alst, const char *name)
 void	print_list(t_dir *list, unsigned char flags)
 {
 	t_dir *ptr;
+
 	ptr = list;
 	while (ptr != NULL)
 	{

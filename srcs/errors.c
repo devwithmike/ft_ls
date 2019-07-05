@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mimeyer <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: mimeyer <mimeyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 13:57:58 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/07/03 14:01:00 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/07/05 13:41:09 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_ls.h"
 
-int		check_errors(char *path)
+int	check_errors(char *path)
 {
 	if (errno == 20)
 	{

@@ -1,30 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_flags.c                                         :+:      :+:    :+:   */
+/*   flags.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mimeyer <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: mimeyer <mimeyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 10:27:28 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/07/03 13:40:21 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/07/05 13:44:09 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_ls.h"
 
-int		check_flags(char *str)
+int				check_flags(char *str)
 {
 	if (*str == 'l')
-		return 1;
+		return (1);
 	else if (*str == 'a')
-		return 2;
+		return (2);
 	else if (*str == 'R')
-		return 4;
+		return (4);
 	else if (*str == 'r')
-		return 8;
+		return (8);
 	else if (*str == 't')
-		return 16;
-	return 0;
+		return (16);
+	return (0);
 }
 
 unsigned char	get_flags(int ac, char **av)
