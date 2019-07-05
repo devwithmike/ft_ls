@@ -6,7 +6,7 @@
 /*   By: mimeyer <mimeyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/28 08:53:30 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/07/05 09:52:46 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/07/05 12:04:08 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,20 @@ t_dir	*set_list(const char *name)
 	new->name = ft_strdup(name);
 	new->next = NULL;
 	return (new);
+}
+
+void	delete_list(t_dir **list)
+{
+	t_dir *current = *list;
+	t_dir *next;
+
+	while (current)
+	{
+		next = current->next;
+		free(current);
+		current = next;
+	}
+	*list = NULL;
 }
 
 void	list_add(t_dir **alst, const char *name)
@@ -82,6 +96,7 @@ void	ft_ls(char *path, unsigned char flags)
 				ft_ls(ft_strjoin(path, ft_strjoin("/", de->d_name)), flags);
 		closedir(dr);
 	}
+	delete_list(&initial);
 }
 
 int main (int ac, char **av)
