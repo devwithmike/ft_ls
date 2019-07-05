@@ -4,8 +4,7 @@ LIBFT_PATH = ./libft/
 
 SRCS =	./srcs/flags.c \
 		./srcs/ft_ls.c \
-		./srcs/errors.c \
-		./srcs/printing.c
+		./srcs/errors.c 
 
 FLAGS = -Wall -Werror -Wextra
 INC =  -I ./includes/ft_ls.h -I $(LIBFT_PATH)libft.h
