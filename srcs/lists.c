@@ -6,7 +6,7 @@
 /*   By: mimeyer <mimeyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/05 12:09:38 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/07/05 13:48:57 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/07/05 15:35:43 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@ t_dir	*set_list(const char *name)
 
 	if (!(new = (t_dir *)malloc(sizeof(*new))))
 		return (NULL);
-	if (!(new->name = (char *)malloc(ft_strlen(name))))
-	{
-		free(new);
-		return (NULL);
-	}
+	// if (!(new->name = (char *)malloc(ft_strlen(name))))
+	// {
+	// 	free(new);
+	// 	return (NULL);
+	// }
 	new->name = ft_strdup(name);
 	new->next = NULL;
 	return (new);

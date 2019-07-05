@@ -6,7 +6,7 @@
 /*   By: mimeyer <mimeyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/28 08:53:30 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/07/05 14:48:47 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/07/05 15:40:29 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,14 @@ void	ft_ls(char *path, unsigned char flags)
 {
 	struct dirent *de;
 	t_dir *initial;
+	DIR *dr;
 
 	initial = NULL;
 	de = NULL;
-	DIR *dr = opendir(path);
+	dr = opendir(path);
 	if (check_errors(path) == 1)
-		return;
-	while((de = readdir(dr)))
+		return ;
+	while ((de = readdir(dr)))
 	{
 		if (!initial)
 			initial = set_list(de->d_name);
@@ -32,12 +33,11 @@ void	ft_ls(char *path, unsigned char flags)
 	}
 	closedir(dr);
 	print_list(initial, flags);
-	
 	if (flags & 4)
 	{
 		dr = opendir(path);
 		while ((de = readdir(dr)))
-			if ((de->d_type == 4) && (ft_strcmp(de->d_name, ".") != 0) 
+			if ((de->d_type == 4) && (ft_strcmp(de->d_name, ".") != 0)
 			&& (ft_strcmp(de->d_name, "..") != 0))
 				ft_ls(ft_strjoin(path, ft_strjoin("/", de->d_name)), flags);
 		closedir(dr);
