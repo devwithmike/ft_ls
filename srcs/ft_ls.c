@@ -6,63 +6,12 @@
 /*   By: mimeyer <mimeyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/28 08:53:30 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/07/05 12:04:08 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/07/05 12:35:52 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include "../includes/ft_ls.h"
-
-t_dir	*set_list(const char *name)
-{
-	t_dir *new;
-
-	if (!(new = (t_dir *)malloc(sizeof(*new))))
-		return (NULL);
-	if (!(new->name = (char *)malloc(ft_strlen(name))))
-	{
-		free(new);
-		return (NULL);
-	}
-	new->name = ft_strdup(name);
-	new->next = NULL;
-	return (new);
-}
-
-void	delete_list(t_dir **list)
-{
-	t_dir *current = *list;
-	t_dir *next;
-
-	while (current)
-	{
-		next = current->next;
-		free(current);
-		current = next;
-	}
-	*list = NULL;
-}
-
-void	list_add(t_dir **alst, const char *name)
-{
-	t_dir *new;
-
-	new = set_list(name);
-	new->next = *alst;
-	*alst = new;
-}
-
-void	print_list(t_dir *list)
-{
-	t_dir *ptr;
-	ptr = list;
-	while (ptr != NULL)
-	{
-		ft_putstr(ptr->name);
-		ft_putchar('\t');
-		ptr = ptr->next;
-	}
-}
 
 void	ft_ls(char *path, unsigned char flags)
 {
@@ -70,9 +19,6 @@ void	ft_ls(char *path, unsigned char flags)
 	t_dir *initial;
 
 	initial = NULL;
-
-	(void)flags;
-
 	de = NULL;
 	DIR *dr = opendir(path);
 	if (check_errors(path) == 1)
@@ -85,7 +31,7 @@ void	ft_ls(char *path, unsigned char flags)
 			list_add(&initial, de->d_name);
 	}
 	closedir(dr);
-	print_list(initial);
+	print_list(initial, flags);
 	
 	if (flags & 4)
 	{
