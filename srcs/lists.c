@@ -6,7 +6,7 @@
 /*   By: mimeyer <mimeyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/05 12:09:38 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/07/08 11:31:54 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/07/08 13:17:24 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,23 +62,24 @@ void	print_list(t_dir *list, unsigned char flags)
 	ptr = list;
 	while (ptr != NULL)
 	{
-		// if (flags & 2)
-		// {
-		// 	ft_putstr(ptr->name);
-		// 	ft_putchar('\t');
-		// 	ptr = ptr->next;
-		// }
-		// else
-		// {
-		// 	if (ptr->name[0] != '.')
-		// 	{
-		// 		ft_putstr(ptr->name);
-		// 		ft_putchar('\t');
-		// 	}
-		// 	ptr = ptr->next;
-		// }
+		if (flags & 2)
+		{
+			ft_putstr(ptr->name);
+			ft_putchar('\t');
+			ptr = ptr->next;
+		}
+		else
+		{
+			if (ptr->name[0] != '.')
+			{
+				ft_putstr(ptr->name);
+				ft_putchar('\t');
+			}
+			ptr = ptr->next;
+		}
 
-		printf("%hu\t%s\t%s\t%lld\n", ptr->nlink, ptr->uid, ptr->gid, ptr->size);
-		ptr = ptr->next;
+		// -l
+		// printf("%hu\t%s\t%s\t%lld\t%s\n", ptr->nlink, ptr->uid, ptr->gid, ptr->size, ptr->name);
+		// ptr = ptr->next;
 	}
 }
