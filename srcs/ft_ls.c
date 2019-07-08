@@ -6,7 +6,7 @@
 /*   By: mimeyer <mimeyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/28 08:53:30 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/07/08 08:50:59 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/07/08 10:47:21 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@ void	recursion(struct dirent *de, unsigned char flags, char *path)
 
 void	ft_ls(char *path, unsigned char flags)
 {
-	struct dirent *de;
-	t_dir *initial;
-	DIR *dr;
+	struct dirent	*de;
+	t_dir			*initial;
+	DIR				*dr;
 
 	initial = NULL;
 	de = NULL;
