@@ -6,7 +6,9 @@ SRCS =	./srcs/flags.c \
 		./srcs/ft_ls.c \
 		./srcs/errors.c \
 		./srcs/lists.c \
-		./srcs/convert.c
+		./srcs/convert.c \
+		./srcs/sort.c \
+		./srcs/printing.c
 
 FLAGS = -Wall -Werror -Wextra
 INC =  -I ./includes/ft_ls.h -I $(LIBFT_PATH)libft.h

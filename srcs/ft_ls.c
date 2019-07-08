@@ -6,7 +6,7 @@
 /*   By: mimeyer <mimeyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/28 08:53:30 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/07/08 10:47:21 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/07/08 14:58:25 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,8 @@ void	ft_ls(char *path, unsigned char flags)
 			list_add(&initial, de->d_name);
 	}
 	closedir(dr);
-	print_list(initial, flags);
+	MergeSort(&initial);
+	print_output(initial, flags);
 	recursion(de, flags, path);
 	delete_list(&initial);
 }
