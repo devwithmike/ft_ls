@@ -6,7 +6,7 @@
 /*   By: mimeyer <mimeyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/28 09:17:47 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/07/08 14:57:40 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/07/08 15:08:42 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,8 @@ void	print_output(t_dir *list, unsigned char flags);
 
 // Sorting
 void FrontBackSplit(t_dir* source, t_dir** frontRef, t_dir** backRef);
-void MergeSort(t_dir** headRef);
-t_dir* SortedMerge(t_dir* a, t_dir* b);
+void MergeSort(t_dir** headRef, unsigned char flags);
+t_dir* SortedMerge(t_dir* a, t_dir* b, unsigned char flags);
 
 
 #endif
