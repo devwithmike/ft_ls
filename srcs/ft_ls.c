@@ -6,12 +6,27 @@
 /*   By: mimeyer <mimeyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/28 08:53:30 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/07/05 15:40:29 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/07/08 08:50:59 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include "../includes/ft_ls.h"
+
+void	recursion(struct dirent *de, unsigned char flags, char *path)
+{
+	DIR *dr;
+
+	if (flags & 4)
+	{
+		dr = opendir(path);
+		while ((de = readdir(dr)))
+			if ((de->d_type == 4) && (ft_strcmp(de->d_name, ".") != 0)
+			&& (ft_strcmp(de->d_name, "..") != 0))
+				ft_ls(ft_strjoin(path, ft_strjoin("/", de->d_name)), flags);
+		closedir(dr);
+	}
+}
 
 void	ft_ls(char *path, unsigned char flags)
 {
@@ -33,15 +48,7 @@ void	ft_ls(char *path, unsigned char flags)
 	}
 	closedir(dr);
 	print_list(initial, flags);
-	if (flags & 4)
-	{
-		dr = opendir(path);
-		while ((de = readdir(dr)))
-			if ((de->d_type == 4) && (ft_strcmp(de->d_name, ".") != 0)
-			&& (ft_strcmp(de->d_name, "..") != 0))
-				ft_ls(ft_strjoin(path, ft_strjoin("/", de->d_name)), flags);
-		closedir(dr);
-	}
+	recursion(de, flags, path);
 	delete_list(&initial);
 }
 
