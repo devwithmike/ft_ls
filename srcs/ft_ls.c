@@ -6,25 +6,27 @@
 /*   By: mimeyer <mimeyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/28 08:53:30 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/07/09 08:25:51 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/07/09 09:35:06 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include "../includes/ft_ls.h"
 
-void	recursion(struct dirent *de, unsigned char flags, char *path)
+void	recursion(t_dir *list, unsigned char flags, char *path)
 {
-	DIR *dr;
+	t_dir *ptr;
 
+	ptr = list;
 	if (flags & 4)
 	{
-		dr = opendir(path);
-		while ((de = readdir(dr)))
-			if ((de->d_type == 4) && (ft_strcmp(de->d_name, ".") != 0)
-			&& (ft_strcmp(de->d_name, "..") != 0))
-				ft_ls(ft_strjoin(path, ft_strjoin("/", de->d_name)), flags);
-		closedir(dr);
+		while (ptr != NULL)
+		{
+			if ((ptr->type == 4) && (ft_strcmp(ptr->name, ".") != 0)
+			&& (ft_strcmp(ptr->name, "..") != 0))
+				ft_ls(ft_strjoin(path, ft_strjoin("/", ptr->name)), flags);
+			ptr = ptr->next;
+		}
 	}
 }
 
@@ -42,14 +44,14 @@ void	ft_ls(char *path, unsigned char flags)
 	while ((de = readdir(dr)))
 	{
 		if (!initial)
-			initial = set_list(de->d_name);
+			initial = set_list(de);
 		else
-			list_add(&initial, de->d_name);
+			list_add(&initial, de);
 	}
 	closedir(dr);
 	MergeSort(&initial, flags);
 	print_output(initial, flags);
-	recursion(de, flags, path);
+	recursion(initial, flags, path);
 	delete_list(&initial);
 }
 
