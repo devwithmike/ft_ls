@@ -6,7 +6,7 @@
 /*   By: mimeyer <mimeyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/28 09:17:47 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/07/09 09:32:58 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/07/09 13:28:59 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ typedef struct		s_dir
 	struct s_dir	*next;
 }					t_dir;
 
-int					check_flags(char *str);
+int					check_flags(char c);
 int					check_errors(char *path);
 t_dir				*set_list(struct dirent *de);
 void				delete_list(t_dir **list);

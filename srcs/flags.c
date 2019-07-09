@@ -6,23 +6,23 @@
 /*   By: mimeyer <mimeyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 10:27:28 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/07/05 13:44:09 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/07/09 13:43:16 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_ls.h"
 
-int				check_flags(char *str)
+int				check_flags(char c)
 {
-	if (*str == 'l')
+	if (c == 'l')
 		return (1);
-	else if (*str == 'a')
+	else if (c == 'a')
 		return (2);
-	else if (*str == 'R')
+	else if (c == 'R')
 		return (4);
-	else if (*str == 'r')
+	else if (c == 'r')
 		return (8);
-	else if (*str == 't')
+	else if (c == 't')
 		return (16);
 	return (0);
 }
@@ -30,22 +30,22 @@ int				check_flags(char *str)
 unsigned char	get_flags(int ac, char **av)
 {
 	int				i;
-	char			*str;
+	int				j;
 	unsigned char	flags;
 
 	flags = '\0';
 	i = 1;
+	j = 0;
 	while (i < ac)
 	{
-		str = ft_strdup(av[i]);
-		if (*str == '-')
+		if (av[i][j] == '-')
 		{
-			(str)++;
-			while (*str == 'l' || *str == 'a' || *str == 'R' ||
-			*str == 'r' || *str == 't')
+			j++;
+			while (av[i][j] == 'l' || av[i][j] == 'a' || av[i][j] == 'R' ||
+			av[i][j] == 'r' || av[i][j] == 't')
 			{
-				flags |= check_flags(str);
-				(str)++;
+				flags |= check_flags(av[i][j]);
+				j++;
 			}
 		}
 		i++;
