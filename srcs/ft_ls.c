@@ -6,7 +6,7 @@
 /*   By: mimeyer <mimeyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/28 08:53:30 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/07/09 08:19:53 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/07/09 08:25:51 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,28 +53,37 @@ void	ft_ls(char *path, unsigned char flags)
 	delete_list(&initial);
 }
 
+int		execute_args(int ac, char **av, unsigned char flags)
+{
+	int i;
+	int check;
+
+	i = 1;
+	check = 0;
+	while (i < ac)
+	{
+		if (av[i][0] != '-')
+		{
+			ft_ls(av[i], flags);
+			check = 1;
+		}
+		i++;
+	}
+	return (check);
+}
+
 int		main(int ac, char **av)
 {
 	unsigned char	flags;
-	int				i;
 	int				check;
 
-	i = 1;
 	check = 0;
 	flags = get_flags(ac, av);
 	if (ac == 1)
 		ft_ls(".", flags);
 	else
 	{
-		while (i < ac)
-		{
-			if (av[i][0] != '-')
-			{
-				ft_ls(av[i], flags);
-				check = 1;
-			}
-			i++;
-		}
+		check = execute_args(ac, av, flags);
 		if (check == 0)
 			ft_ls(".", flags);
 	}

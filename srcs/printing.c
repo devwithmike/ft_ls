@@ -6,7 +6,7 @@
 /*   By: mimeyer <mimeyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 14:48:22 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/07/08 14:56:35 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/07/09 08:29:31 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	print_normal(t_dir *list, unsigned char flags)
 		if (flags & 2)
 		{
 			ft_putstr(ptr->name);
-			ft_putchar('\t');
+			ft_putstr("\t\t");
 			ptr = ptr->next;
 		}
 		else
@@ -55,7 +55,7 @@ void	print_normal(t_dir *list, unsigned char flags)
 			if (ptr->name[0] != '.')
 			{
 				ft_putstr(ptr->name);
-				ft_putchar('\t');
+				ft_putstr("\t\t");
 			}
 			ptr = ptr->next;
 		}
