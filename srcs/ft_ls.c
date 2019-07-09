@@ -6,7 +6,7 @@
 /*   By: mimeyer <mimeyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/28 08:53:30 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/07/08 15:08:52 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/07/09 08:19:53 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,18 +57,27 @@ int		main(int ac, char **av)
 {
 	unsigned char	flags;
 	int				i;
+	int				check;
 
 	i = 1;
+	check = 0;
 	flags = get_flags(ac, av);
-	if ((ac == 1) || ((ac == 2) && flags))
+	if (ac == 1)
 		ft_ls(".", flags);
 	else
+	{
 		while (i < ac)
 		{
 			if (av[i][0] != '-')
+			{
 				ft_ls(av[i], flags);
+				check = 1;
+			}
 			i++;
 		}
+		if (check == 0)
+			ft_ls(".", flags);
+	}
 	ft_putchar('\n');
 	return (0);
 }
