@@ -6,7 +6,7 @@
 /*   By: mimeyer <mimeyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/28 09:17:47 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/07/09 13:28:59 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/07/09 15:59:53 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <pwd.h>
 # include <grp.h>
 # include <uuid/uuid.h>
+# include <errno.h>
 
 typedef struct		s_dir
 {
@@ -44,12 +45,12 @@ void				recursive_print(struct dirent *de, unsigned char flags,
 						char *path);
 unsigned char		get_flags(int ac, char **av);
 void				ft_ls(char *path, unsigned char flags);
-void	recursion(t_dir *list, unsigned char flags, char *path);
+void				recursion(t_dir *list, unsigned char flags, char *path);
 char				*convert_un(int uid);
 char				*convert_gn(int gib);
-void	print_list(t_dir *list, unsigned char flags);
-void	print_normal(t_dir *list, unsigned char flags);
-void	print_output(t_dir *list, unsigned char flags);
+void				print_list(t_dir *list, unsigned char flags);
+void				print_normal(t_dir *list, unsigned char flags);
+void				print_output(t_dir *list, unsigned char flags);
 
 
 // Sorting
