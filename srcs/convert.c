@@ -6,7 +6,7 @@
 /*   By: mimeyer <mimeyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 11:17:49 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/07/08 13:32:40 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/07/10 14:28:08 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,4 +34,22 @@ char	*convert_gn(int gib)
 	else
 		return (grp->gr_name);
 	return (NULL);
+}
+
+void	convert_time(char *str)
+{
+	char	ret[14];
+	int		i;
+	int		j;
+
+	j = 0;
+	i = 4;
+	ft_strcpy(ret, "000  0 00:00 ");
+	while (i < 16)
+	{
+		ret[j] = str[i];
+		j++;
+		i++;
+	}
+	ft_putstr(ret);
 }

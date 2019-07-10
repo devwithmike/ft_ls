@@ -6,7 +6,7 @@
 /*   By: mimeyer <mimeyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 14:48:22 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/07/10 13:30:13 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/07/10 14:28:11 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	format_line(t_dir *list)
 	ft_putstr("  ");
 	ft_putnbr(list->size);
 	ft_putstr("\t");
-	ft_putnbr(list->time);
+	convert_time(ctime(&list->time));
 	ft_putstr(" ");
 	ft_putendl(list->name);
 }

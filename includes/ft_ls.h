@@ -6,7 +6,7 @@
 /*   By: mimeyer <mimeyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/28 09:17:47 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/07/10 11:11:52 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/07/10 14:28:36 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include <grp.h>
 # include <uuid/uuid.h>
 # include <errno.h>
+# include <time.h>
 
 typedef struct		s_dir
 {
@@ -49,6 +50,7 @@ t_dir				*set_list(struct dirent *de, char *path);
 
 unsigned char		get_flags(int ac, char **av);
 
+void				convert_time(char *str);
 void				delete_list(t_dir **list);
 void				print_recursion(char *path);
 void				ft_ls(char *path, unsigned char flags);
