@@ -6,7 +6,7 @@
 /*   By: mimeyer <mimeyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 13:57:58 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/07/10 09:15:30 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/07/10 11:09:02 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,14 +39,14 @@ int	check_errors(char *path, DIR *dr)
 {
 	if (error_file(path) == 1)
 		return (1);
-    else if(!dr)
+	else if (!dr)
 	{
 		if (error_permission(path) == 1)
 			return (1);
 		ft_putstr("ft_ls: ");
 		ft_putstr(path);
 		ft_putstr(": No such file or directory\n");
-        return (1);
-    }
+		return (1);
+	}
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: mimeyer <mimeyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/28 09:17:47 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/07/10 10:46:25 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/07/10 11:11:52 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ typedef struct		s_dir
 int					check_flags(char c);
 int					error_file(char *path);
 int					error_permission(char *path);
-int					check_errors(char * path, DIR *dr);
+int					check_errors(char *path, DIR *dr);
 
 char				*convert_un(int uid);
 char				*convert_gn(int gib);
@@ -66,6 +66,5 @@ void				recursive_print(struct dirent *de, unsigned char flags,
 void FrontBackSplit(t_dir* source, t_dir** frontRef, t_dir** backRef);
 void MergeSort(t_dir** headRef, unsigned char flags);
 t_dir* SortedMerge(t_dir* a, t_dir* b, unsigned char flags);
-
 
 #endif
