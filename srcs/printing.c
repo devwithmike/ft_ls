@@ -6,11 +6,26 @@
 /*   By: mimeyer <mimeyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 14:48:22 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/07/10 09:58:02 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/07/10 11:05:22 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_ls.h"
+
+void	print_blocks(t_dir *list)
+{
+	int i;
+
+	i = 0;
+	ft_putstr("total ");
+	while (list)
+	{
+		i += list->block;
+		list = list->next;
+	}
+	ft_putnbr(i);
+	ft_putchar('\n');
+}
 
 void	print_list(t_dir *list, unsigned char flags)
 {
@@ -76,6 +91,7 @@ void	print_output(t_dir *list, unsigned char flags, char *path)
 {
 	if (flags & 1)
 	{
+		print_blocks(list);
 		if (flags & 4)
 			print_recursion(path);
 		print_list(list, flags);
