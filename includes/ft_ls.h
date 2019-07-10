@@ -6,7 +6,7 @@
 /*   By: mimeyer <mimeyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/28 09:17:47 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/07/10 09:32:59 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/07/10 10:46:25 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,14 @@
 typedef struct		s_dir
 {
 	char			*name;
+	mode_t			mode;
 	nlink_t			nlink;
 	char			*uid;
 	char			*gid;
 	off_t			size;
 	int				type;
+	time_t			time;
+	int				block;
 	struct s_dir	*next;
 }					t_dir;
 
@@ -42,16 +45,16 @@ int					check_errors(char * path, DIR *dr);
 char				*convert_un(int uid);
 char				*convert_gn(int gib);
 
-t_dir				*set_list(struct dirent *de);
+t_dir				*set_list(struct dirent *de, char *path);
 
 unsigned char		get_flags(int ac, char **av);
 
 void				delete_list(t_dir **list);
 void				print_recursion(char *path);
 void				ft_ls(char *path, unsigned char flags);
-void				list_add(t_dir **alst, struct dirent *de);
 void				print_list(t_dir *list, unsigned char flags);
 void				print_normal(t_dir *list, unsigned char flags);
+void				list_add(t_dir **alst, struct dirent *de, char *path);
 void				recursion(t_dir *list, unsigned char flags, char *path);
 void				print_output(t_dir *list, unsigned char flags, char *path);
 void				basic_print(struct dirent *de, unsigned char flags,
