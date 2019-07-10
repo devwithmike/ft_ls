@@ -6,7 +6,7 @@
 /*   By: mimeyer <mimeyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 14:48:22 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/07/10 11:05:22 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/07/10 11:17:11 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	print_blocks(t_dir *list)
 		list = list->next;
 	}
 	ft_putnbr(i);
-	ft_putchar('\n');
+	//ft_putchar('\n');
 }
 
 void	print_list(t_dir *list, unsigned char flags)
@@ -81,7 +81,7 @@ void	print_recursion(char *path)
 {
 	if ((ft_strcmp(path, "./") != 0) && (ft_strcmp(path, ".") != 0))
 	{
-		ft_putstr("\n\n");
+		ft_putstr("\n");
 		ft_putstr(path);
 		ft_putstr(":\n");
 	}
@@ -91,9 +91,9 @@ void	print_output(t_dir *list, unsigned char flags, char *path)
 {
 	if (flags & 1)
 	{
-		print_blocks(list);
 		if (flags & 4)
 			print_recursion(path);
+		print_blocks(list);
 		print_list(list, flags);
 	}
 	else
