@@ -6,7 +6,7 @@
 /*   By: mimeyer <mimeyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/28 08:53:30 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/07/10 11:07:30 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/07/10 12:41:31 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,17 @@ int		main(int ac, char **av)
 
 	check = 0;
 	flags = get_flags(ac, av);
+	
+	// if (flags & 1)
+	// 	printf("l\n");
+	// if (flags & 2)
+	// 	printf("a\n");
+	// if (flags & 4)
+	// 	printf("R\n");
+	// if (flags & 8)
+	// 	printf("t\n");
+	// if (flags & 16)
+	// 	printf("t\n");
 	if (ac == 1)
 		ft_ls(".", flags);
 	else

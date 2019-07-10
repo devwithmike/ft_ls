@@ -6,7 +6,7 @@
 /*   By: mimeyer <mimeyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 14:48:22 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/07/10 11:17:11 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/07/10 11:20:19 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ void	print_blocks(t_dir *list)
 		list = list->next;
 	}
 	ft_putnbr(i);
-	//ft_putchar('\n');
 }
 
 void	print_list(t_dir *list, unsigned char flags)
