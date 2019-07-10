@@ -6,7 +6,7 @@
 /*   By: mimeyer <mimeyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/28 09:17:47 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/07/09 15:59:53 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/07/10 09:17:25 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,9 @@ typedef struct		s_dir
 }					t_dir;
 
 int					check_flags(char c);
-int					check_errors(char *path);
+int					error_permission(char *path);
+int					error_file(char *path);
+int					check_errors(char * path, DIR *dr);
 t_dir				*set_list(struct dirent *de);
 void				delete_list(t_dir **list);
 void				list_add(t_dir **alst, struct dirent *de);
@@ -50,7 +52,8 @@ char				*convert_un(int uid);
 char				*convert_gn(int gib);
 void				print_list(t_dir *list, unsigned char flags);
 void				print_normal(t_dir *list, unsigned char flags);
-void				print_output(t_dir *list, unsigned char flags);
+void				print_output(t_dir *list, unsigned char flags, char *path);
+void				print_recursion(char *path);
 
 
 // Sorting

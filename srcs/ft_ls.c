@@ -6,7 +6,7 @@
 /*   By: mimeyer <mimeyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/28 08:53:30 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/07/09 15:54:43 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/07/10 09:17:56 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,12 @@
 
 void	recursion(t_dir *list, unsigned char flags, char *path)
 {
-	t_dir *ptr;
-	char *s1;
-	char *s2;
+	t_dir	*ptr;
+	char	*s1;
+	char	*s2;
 
 	ptr = list;
 	if (flags & 4)
-	{
 		while (ptr != NULL)
 		{
 			if ((ptr->type == 4) && (ft_strcmp(ptr->name, ".") != 0)
@@ -40,7 +39,6 @@ void	recursion(t_dir *list, unsigned char flags, char *path)
 			}
 			ptr = ptr->next;
 		}
-	}
 }
 
 void	ft_ls(char *path, unsigned char flags)
@@ -52,7 +50,7 @@ void	ft_ls(char *path, unsigned char flags)
 	initial = NULL;
 	de = NULL;
 	dr = opendir(path);
-	if (check_errors(path) == 1)
+	if (check_errors(path, dr) == 1)
 		return ;
 	while ((de = readdir(dr)))
 	{
@@ -63,7 +61,7 @@ void	ft_ls(char *path, unsigned char flags)
 	}
 	closedir(dr);
 	MergeSort(&initial, flags);
-	print_output(initial, flags);
+	print_output(initial, flags, path);
 	recursion(initial, flags, path);
 	delete_list(&initial);
 }
