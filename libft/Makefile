@@ -68,83 +68,31 @@ SRCS = 	ft_atoi.c \
 
 INC = libft.h
 
-OUTPUT = ft_atoi.o \
-		 ft_bzero.o \
-		 ft_foreach.o \
-		 ft_isalnum.o \
-		 ft_isalpha.o \
-		 ft_isascii.o \
-		 ft_isdigit.o \
-		 ft_isprint.o \
-		 ft_itoa.o \
-		 ft_lstadd.o \
-		 ft_lstdel.o \
-		 ft_lstdelone.o \
-		 ft_lstiter.o \
-		 ft_lstnew.o \
-		 ft_memalloc.o \
-		 ft_memccpy.o \
-		 ft_memchr.o \
-		 ft_memcmp.o \
-		 ft_memcpy.o \
-		 ft_memdel.o \
-		 ft_memmove.o \
-		 ft_memset.o \
-		 ft_numlen.o \
-		 ft_putchar.o \
-		 ft_putchar_fd.o \
-		 ft_putendl.o \
-		 ft_putendl_fd.o \
-		 ft_putnbr.o \
-		 ft_putnbr_fd.o \
-		 ft_putstr.o \
-		 ft_putstr_fd.o \
-		 ft_strcat.o \
-		 ft_strchr.o \
-		 ft_strclr.o \
-		 ft_strcmp.o \
-		 ft_strcpy.o \
-		 ft_strdel.o \
-		 ft_strdup.o \
-		 ft_strequ.o \
-		 ft_striter.o \
-		 ft_striteri.o \
-		 ft_strjoin.o \
-		 ft_strlcat.o \
-		 ft_strlen.o \
-		 ft_strmap.o \
-		 ft_strmapi.o \
-		 ft_strncat.o \
-		 ft_strncmp.o \
-		 ft_strncpy.o \
-		 ft_strnequ.o \
-		 ft_strnew.o \
-		 ft_strnstr.o \
-		 ft_strrchr.o \
-		 ft_strrev.o \
-		 ft_strsplit.o \
-		 ft_strstr.o \
-		 ft_strsub.o \
-		 ft_strtrim.o \
-		 ft_swap.o \
-		 ft_tolower.o \
-		 ft_toupper.o \
-		 ft_wordcount.o \
-		 ft_wordlen.o \
-		 ft_pwr.o \
-		 ft_sqrt.o
+SRC_PATH = ./
+
+SRC = $(addprefix $(SRC_PATH), $(SRCS))
+
+SRCO = $(patsubst %.c, %.o, $(SRC))
+
+FLAGS = -Wall -Werror -Wextra
 
 all: $(NAME)
 
-$(NAME):
-	@gcc -Wall -Werror -Wextra -c $(SRCS) -I $(INC) 
-	@ar rc $(NAME) $(OUTPUT)
-	@ranlib $(NAME)
+$(NAME): $(SRCO)
+	@ar rc $(NAME) $(SRCO)
+	@echo "\033[92mLibrary Compiled."
+
+$(SRC_PATH)%.o: $(SRC_PATH)%.c
+	@gcc $(FLAGS) -c $< -o $@
 
 clean:
-	@/bin/rm -f $(OUTPUT)
+	@rm -f $(SRCO)
+	@echo "\033[93mLibrary Object Files Removed."
 
-fclean: clean
-	@/bin/rm -f $(NAME)
+fclean:
+	@rm -f $(NAME)
+	@echo "\033[93mLibrary Removed."
 
-re: fclean all
+re:	fclean all
+
+.PHONY: all fclean clean re
