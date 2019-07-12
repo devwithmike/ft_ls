@@ -6,7 +6,7 @@
 /*   By: mimeyer <mimeyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/28 09:17:47 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/07/12 10:14:36 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/07/12 10:46:24 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,8 @@ unsigned char		get_flags(int ac, char **av);
 
 void				convert_time(char *str);
 void				format_line(t_dir *list);
-void				long_format(t_dir *list);
+void				format_long(t_dir *list);
+void				format_permissions(t_dir *list);
 void				delete_list(t_dir **list);
 void				print_recursion(char *path);
 void				ft_ls(char *path, unsigned char flags);

@@ -6,13 +6,26 @@
 /*   By: mimeyer <mimeyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/12 09:48:27 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/07/12 10:35:54 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/07/12 10:46:02 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_ls.h"
 
-void	long_format(t_dir *list)
+void	format_permissions(t_dir *list)
+{
+	ft_putstr((list->mode & S_IRUSR) ? "r" : "-");
+	ft_putstr((list->mode & S_IWUSR) ? "w" : "-");
+	ft_putstr((list->mode & S_IXUSR) ? "x" : "-");
+	ft_putstr((list->mode & S_IRGRP) ? "r" : "-");
+	ft_putstr((list->mode & S_IWGRP) ? "w" : "-");
+	ft_putstr((list->mode & S_IXGRP) ? "x" : "-");
+	ft_putstr((list->mode & S_IROTH) ? "r" : "-");
+	ft_putstr((list->mode & S_IWOTH) ? "w" : "-");
+	ft_putstr((list->mode & S_IXOTH) ? "x  " : "-  ");
+}
+
+void	format_long(t_dir *list)
 {
 	if (S_ISDIR(list->mode))
 		ft_putchar('d');
@@ -32,16 +45,8 @@ void	long_format(t_dir *list)
 
 void	format_line(t_dir *list)
 {
-	long_format(list);
-	ft_putstr((list->mode & S_IRUSR) ? "r" : "-");
-	ft_putstr((list->mode & S_IWUSR) ? "w" : "-");
-	ft_putstr((list->mode & S_IXUSR) ? "x" : "-");
-	ft_putstr((list->mode & S_IRGRP) ? "r" : "-");
-	ft_putstr((list->mode & S_IWGRP) ? "w" : "-");
-	ft_putstr((list->mode & S_IXGRP) ? "x" : "-");
-	ft_putstr((list->mode & S_IROTH) ? "r" : "-");
-	ft_putstr((list->mode & S_IWOTH) ? "w" : "-");
-	ft_putstr((list->mode & S_IXOTH) ? "x  " : "-  ");
+	format_long(list);
+	format_permissions(list);
 	ft_putnbr(list->nlink);
 	ft_putchar('\t');
 	ft_putstr(list->uid);
