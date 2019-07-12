@@ -6,7 +6,7 @@
 /*   By: mimeyer <mimeyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/28 09:17:47 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/07/10 14:39:46 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/07/12 08:37:15 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ void				convert_time(char *str);
 void				delete_list(t_dir **list);
 void				print_recursion(char *path);
 void				ft_ls(char *path, unsigned char flags);
+void				print_blocks(t_dir *list, unsigned char flags);
 void				print_list(t_dir *list, unsigned char flags);
 void				print_normal(t_dir *list, unsigned char flags);
 void				list_add(t_dir **alst, struct dirent *de, char *path);

@@ -6,13 +6,13 @@
 /*   By: mimeyer <mimeyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 14:48:22 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/07/10 14:28:11 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/07/12 08:47:27 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_ls.h"
 
-void	print_blocks(t_dir *list)
+void	print_blocks(t_dir *list, unsigned char flags)
 {
 	int i;
 
@@ -20,8 +20,17 @@ void	print_blocks(t_dir *list)
 	ft_putstr("total ");
 	while (list)
 	{
-		i += list->block;
-		list = list->next;
+		if (flags & 2)
+		{
+			i += list->block;
+			list = list->next;
+		}
+		else
+		{
+			if (ft_strncmp(list->name, ".", 1) != 0)
+				i += list->block;
+			list = list->next;
+		}
 	}
 	ft_putnbr(i);
 	ft_putchar('\n');
@@ -49,7 +58,7 @@ void	format_line(t_dir *list)
 	ft_putstr("\t");
 	convert_time(ctime(&list->time));
 	ft_putstr(" ");
-	ft_putendl(list->name);
+	ft_putstr(list->name);
 }
 
 void	print_list(t_dir *list, unsigned char flags)
@@ -111,7 +120,7 @@ void	print_output(t_dir *list, unsigned char flags, char *path)
 	{
 		if (flags & 4)
 			print_recursion(path);
-		print_blocks(list);
+		print_blocks(list, flags);
 		print_list(list, flags);
 	}
 	else
