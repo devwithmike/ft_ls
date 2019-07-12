@@ -6,7 +6,7 @@
 /*   By: mimeyer <mimeyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 14:48:22 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/07/12 08:47:27 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/07/12 09:02:52 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	format_line(t_dir *list)
 	ft_putstr("\t");
 	convert_time(ctime(&list->time));
 	ft_putstr(" ");
-	ft_putstr(list->name);
+	ft_putendl(list->name);
 }
 
 void	print_list(t_dir *list, unsigned char flags)
@@ -89,7 +89,8 @@ void	print_normal(t_dir *list, unsigned char flags)
 		if (flags & 2)
 		{
 			ft_putstr(ptr->name);
-			ft_putstr("\t\t");
+			if (ptr->next != NULL)
+					ft_putstr("\n");
 			ptr = ptr->next;
 		}
 		else
@@ -97,7 +98,8 @@ void	print_normal(t_dir *list, unsigned char flags)
 			if (ptr->name[0] != '.')
 			{
 				ft_putstr(ptr->name);
-				ft_putstr("\t\t");
+				if (ptr->next != NULL)
+					ft_putstr("\n");
 			}
 			ptr = ptr->next;
 		}
