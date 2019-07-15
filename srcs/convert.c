@@ -6,7 +6,7 @@
 /*   By: mimeyer <mimeyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 11:17:49 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/07/15 11:59:14 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/07/15 13:37:45 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,11 @@
 
 void	convert_nlink(char *path, t_dir *list)
 {
-	char	buf[1024];
+	char	buf[1025];
 	char	*tmp;
 	char	*full;
 
+	ft_bzero(buf, 1025);
 	tmp = ft_strjoin(path, "/");
 	full = ft_strjoin(tmp, list->name);
 	readlink(full, buf, 1024);
