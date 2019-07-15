@@ -6,7 +6,7 @@
 /*   By: mimeyer <mimeyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/12 09:48:27 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/07/15 11:57:56 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/07/15 15:09:18 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	format_nlink(t_dir *list)
 	int len;
 	int amount;
 
-	amount = 4;
+	amount = 5;
 	len = ft_numlen(list->nlink);
 	if (len == 0)
 		amount--;

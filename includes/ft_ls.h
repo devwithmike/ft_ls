@@ -6,7 +6,7 @@
 /*   By: mimeyer <mimeyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/28 09:17:47 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/07/15 11:55:11 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/07/15 14:52:42 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ t_dir				*set_list(struct dirent *de, char *path);
 
 unsigned char		get_flags(int ac, char **av);
 
+void				print_time(char *str);
 void				convert_time(char *str);
 void				format_nlink(t_dir *list);
 void				format_size(t_dir *list);

@@ -6,7 +6,7 @@
 /*   By: mimeyer <mimeyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 11:17:49 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/07/15 13:37:45 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/07/15 15:09:01 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,30 @@ char	*convert_gn(int gib)
 	return (ft_itoa(gib));
 }
 
+void	print_time(char *str)
+{
+	int len;
+	int i;
+
+	i = 0;
+	len = ft_strlen(str);
+	ft_putchar(str[4]);
+	ft_putchar(str[5]);
+	ft_putchar(' ');
+	while (i < 3)
+	{
+		ft_putchar(str[i]);
+		i++;
+	}
+	i = 7;
+	ft_putchar(' ');
+	while (i < len)
+	{
+		ft_putchar(str[i]);
+		i++;
+	}
+}
+
 void	convert_time(char *str)
 {
 	char	ret[14];
@@ -63,5 +87,5 @@ void	convert_time(char *str)
 		j++;
 		i++;
 	}
-	ft_putstr(ret);
+	print_time(ret);
 }
