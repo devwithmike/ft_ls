@@ -6,7 +6,7 @@
 /*   By: mimeyer <mimeyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 14:48:22 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/07/12 09:49:49 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/07/15 11:55:36 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	print_blocks(t_dir *list, unsigned char flags)
 	ft_putchar('\n');
 }
 
-void	print_list(t_dir *list, unsigned char flags)
+void	print_list(t_dir *list, unsigned char flags, char *path)
 {
 	t_dir *ptr;
 
@@ -44,11 +44,11 @@ void	print_list(t_dir *list, unsigned char flags)
 	while (ptr != NULL)
 	{
 		if (flags & 2)
-			format_line(ptr);
+			format_line(ptr, path);
 		else
 		{
 			if (ft_strncmp(ptr->name, ".", 1) != 0)
-				format_line(ptr);
+				format_line(ptr, path);
 		}
 		ptr = ptr->next;
 	}
@@ -98,7 +98,7 @@ void	print_output(t_dir *list, unsigned char flags, char *path)
 		if (flags & 4)
 			print_recursion(path);
 		print_blocks(list, flags);
-		print_list(list, flags);
+		print_list(list, flags, path);
 	}
 	else
 	{

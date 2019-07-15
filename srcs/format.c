@@ -6,11 +6,47 @@
 /*   By: mimeyer <mimeyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/12 09:48:27 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/07/12 10:46:02 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/07/15 11:57:56 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_ls.h"
+
+void	format_nlink(t_dir *list)
+{
+	int len;
+	int amount;
+
+	amount = 4;
+	len = ft_numlen(list->nlink);
+	if (len == 0)
+		amount--;
+	ft_putnbr(list->nlink);
+	if (len < amount)
+		while (len < amount)
+		{
+			ft_putchar(' ');
+			len++;
+		}
+}
+
+void	format_size(t_dir *list)
+{
+	int len;
+	int amount;
+
+	amount = 8;
+	len = ft_numlen(list->size);
+	if (len == 0)
+		amount--;
+	ft_putnbr(list->size);
+	if (len < amount)
+		while (len < amount)
+		{
+			ft_putchar(' ');
+			len++;
+		}
+}
 
 void	format_permissions(t_dir *list)
 {
@@ -43,22 +79,21 @@ void	format_long(t_dir *list)
 		ft_putchar('-');
 }
 
-void	format_line(t_dir *list)
+void	format_line(t_dir *list, char *path)
 {
 	format_long(list);
 	format_permissions(list);
-	ft_putnbr(list->nlink);
-	ft_putchar('\t');
+	format_nlink(list);
 	ft_putstr(list->uid);
 	ft_putstr("  ");
 	ft_putstr(list->gid);
 	ft_putstr("  ");
-	ft_putnbr(list->size);
-	ft_putstr("\t");
+	format_size(list);
 	convert_time(ctime(&list->time));
 	ft_putstr(" ");
+	ft_putstr(list->name);
+	if (S_ISLNK(list->mode))
+		convert_nlink(path, list);
 	if (list->next != NULL)
-		ft_putendl(list->name);
-	else
-		ft_putstr(list->name);
+		ft_putchar('\n');
 }

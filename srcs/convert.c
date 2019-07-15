@@ -6,11 +6,26 @@
 /*   By: mimeyer <mimeyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 11:17:49 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/07/15 10:31:09 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/07/15 11:59:14 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_ls.h"
+
+void	convert_nlink(char *path, t_dir *list)
+{
+	char	buf[1024];
+	char	*tmp;
+	char	*full;
+
+	tmp = ft_strjoin(path, "/");
+	full = ft_strjoin(tmp, list->name);
+	readlink(full, buf, 1024);
+	ft_putstr(" -> ");
+	ft_putstr(buf);
+	free(tmp);
+	free(full);
+}
 
 char	*convert_un(int uid)
 {

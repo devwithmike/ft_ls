@@ -6,7 +6,7 @@
 /*   By: mimeyer <mimeyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/28 09:17:47 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/07/12 10:46:24 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/07/15 11:55:11 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,14 +51,17 @@ t_dir				*set_list(struct dirent *de, char *path);
 unsigned char		get_flags(int ac, char **av);
 
 void				convert_time(char *str);
-void				format_line(t_dir *list);
+void				format_nlink(t_dir *list);
+void				format_size(t_dir *list);
+void				convert_nlink(char *path, t_dir *list);
+void				format_line(t_dir *list, char *path);
 void				format_long(t_dir *list);
 void				format_permissions(t_dir *list);
 void				delete_list(t_dir **list);
 void				print_recursion(char *path);
 void				ft_ls(char *path, unsigned char flags);
 void				print_blocks(t_dir *list, unsigned char flags);
-void				print_list(t_dir *list, unsigned char flags);
+void				print_list(t_dir *list, unsigned char flags, char *path);
 void				print_normal(t_dir *list, unsigned char flags);
 void				list_add(t_dir **alst, struct dirent *de, char *path);
 void				recursion(t_dir *list, unsigned char flags, char *path);
