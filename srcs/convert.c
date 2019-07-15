@@ -6,7 +6,7 @@
 /*   By: mimeyer <mimeyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 11:17:49 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/07/10 14:28:08 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/07/15 10:31:09 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,9 @@ char	*convert_un(int uid)
 	struct passwd *pwd;
 
 	pwd = getpwuid(uid);
-	if (pwd == NULL)
-		perror("getpwuid");
-	else
-		return (pwd->pw_name);
-	return (NULL);
+	if (pwd != NULL)
+		return (ft_strdup(pwd->pw_name));
+	return (ft_itoa(uid));
 }
 
 char	*convert_gn(int gib)
@@ -29,11 +27,9 @@ char	*convert_gn(int gib)
 	struct group *grp;
 
 	grp = getgrgid(gib);
-	if (grp == NULL)
-		perror("getgigid");
-	else
-		return (grp->gr_name);
-	return (NULL);
+	if (grp != NULL)
+		return (ft_strdup(grp->gr_name));
+	return (ft_itoa(gib));
 }
 
 void	convert_time(char *str)

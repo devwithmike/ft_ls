@@ -6,7 +6,7 @@
 /*   By: mimeyer <mimeyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/05 12:09:38 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/07/10 11:10:26 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/07/15 10:30:16 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ void	delete_list(t_dir **list)
 	{
 		next = current->next;
 		free(current->name);
+		free(current->uid);
+		free(current->gid);
 		free(current);
 		current = next;
 	}
