@@ -6,7 +6,7 @@
 /*   By: mimeyer <mimeyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/28 09:17:47 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/07/15 14:52:42 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/07/16 10:40:27 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,10 @@ int					check_flags(char c);
 int					error_file(char *path);
 int					error_permission(char *path);
 int					check_errors(char *path, DIR *dr);
+int		execute_args(char **av, unsigned char flags);
+
+void	add_args(char **args, int ac, char **av);
+void	sort_args(char **args);
 
 char				*convert_un(int uid);
 char				*convert_gn(int gib);
