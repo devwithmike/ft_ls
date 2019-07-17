@@ -6,33 +6,16 @@
 /*   By: mimeyer <mimeyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 14:48:22 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/07/17 09:24:14 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/07/17 11:40:59 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_ls.h"
 
-void	print_blocks(t_dir *list, unsigned char flags)
+void	print_blocks(t_blocks *blocks)
 {
-	int i;
-
-	i = 0;
 	ft_putstr("total ");
-	while (list)
-	{
-		if (flags & 2)
-		{
-			i += list->block;
-			list = list->next;
-		}
-		else
-		{
-			if (ft_strncmp(list->name, ".", 1) != 0)
-				i += list->block;
-			list = list->next;
-		}
-	}
-	ft_putnbr(i);
+	ft_putnbr(blocks->total);
 	ft_putchar('\n');
 }
 
@@ -91,13 +74,13 @@ void	print_recursion(char *path)
 	}
 }
 
-void	print_output(t_dir *list, unsigned char flags, char *path)
+void	print_output(t_dir *list, unsigned char flags, char *path, t_blocks *blocks)
 {
 	if (flags & 1)
 	{
 		if (flags & 4)
 			print_recursion(path);
-		print_blocks(list, flags);
+		print_blocks(blocks);
 		print_list(list, flags, path);
 	}
 	else

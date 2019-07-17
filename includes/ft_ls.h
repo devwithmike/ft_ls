@@ -6,7 +6,7 @@
 /*   By: mimeyer <mimeyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/28 09:17:47 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/07/17 09:18:10 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/07/17 11:43:07 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,19 +38,28 @@ typedef struct		s_dir
 	struct s_dir	*next;
 }					t_dir;
 
+typedef struct		s_blocks
+{
+	int				total;
+	unsigned char	flags;
+}					t_blocks;
+
+
 int					check_flags(char c);
 int					error_file(char *path);
 int					error_permission(char *path);
 int					check_errors(char *path, DIR *dr);
-int		execute_args(char **av, unsigned char flags);
+int					execute_args(char **av, unsigned char flags);
 
-void	add_args(char **args, int ac, char **av);
-void	sort_args(char **args);
+void				add_args(char **args, int ac, char **av);
+void				sort_args(char **args);
 
 char				*convert_un(int uid);
 char				*convert_gn(int gib);
 
-t_dir				*set_list(struct dirent *de, char *path);
+void	set_blocks(int block, t_blocks *total, char *name);
+
+t_dir	*set_list(struct dirent *de, char *path, t_blocks *blocks);
 
 unsigned char		get_flags(int ac, char **av);
 
@@ -65,20 +74,19 @@ void				format_permissions(t_dir *list);
 void				delete_list(t_dir **list);
 void				print_recursion(char *path);
 void				ft_ls(char *path, unsigned char flags);
-void				print_blocks(t_dir *list, unsigned char flags);
+void	print_blocks(t_blocks *blocks);
 void				print_list(t_dir *list, unsigned char flags, char *path);
 void				print_normal(t_dir *list, unsigned char flags);
-void				list_add(t_dir **alst, struct dirent *de, char *path);
+void	list_add(t_dir **alst, struct dirent *de, char *path, t_blocks *blocks);
 void				recursion(t_dir *list, unsigned char flags, char *path);
-void				print_output(t_dir *list, unsigned char flags, char *path);
+void	print_output(t_dir *list, unsigned char flags, char *path, t_blocks *blocks);
 void				basic_print(struct dirent *de, unsigned char flags,
 						DIR *dr);
 void				recursive_print(struct dirent *de, unsigned char flags,
 						char *path);
 
-// Sorting
-void front_back_sort(t_dir* source, t_dir** frontRef, t_dir** backRef);
-void merge_sort(t_dir** headRef, unsigned char flags);
-t_dir* sorted_merge(t_dir* a, t_dir* b, unsigned char flags);
+void				front_back_sort(t_dir* source, t_dir** frontRef, t_dir** backRef);
+void				merge_sort(t_dir** headRef, unsigned char flags);
+t_dir				*sorted_merge(t_dir* a, t_dir* b, unsigned char flags);
 
 #endif

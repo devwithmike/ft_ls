@@ -6,13 +6,13 @@
 /*   By: mimeyer <mimeyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/05 12:09:38 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/07/15 10:30:16 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/07/17 11:37:33 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_ls.h"
 
-t_dir	*set_list(struct dirent *de, char *path)
+t_dir	*set_list(struct dirent *de, char *path, t_blocks *blocks)
 {
 	t_dir		*new;
 	struct stat	sb;
@@ -32,8 +32,8 @@ t_dir	*set_list(struct dirent *de, char *path)
 	new->type = de->d_type;
 	new->mode = sb.st_mode;
 	new->time = sb.st_mtime;
-	new->block = sb.st_blocks;
 	new->next = NULL;
+	set_blocks(sb.st_blocks, blocks, new->name);
 	free(tmp_path);
 	free(tmp);
 	return (new);
@@ -57,11 +57,11 @@ void	delete_list(t_dir **list)
 	*list = NULL;
 }
 
-void	list_add(t_dir **alst, struct dirent *de, char *path)
+void	list_add(t_dir **alst, struct dirent *de, char *path, t_blocks *blocks)
 {
 	t_dir *new;
 
-	new = set_list(de, path);
+	new = set_list(de, path, blocks);
 	new->next = *alst;
 	*alst = new;
 }

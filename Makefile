@@ -12,7 +12,8 @@ SRCS =	flags.c \
 		sort.c \
 		printing.c \
 		format.c \
-		args.c
+		args.c \
+		utils.c
 
 FLAGS = -Wall -Werror -Wextra
 

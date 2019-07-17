@@ -6,7 +6,7 @@
 /*   By: mimeyer <mimeyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/28 08:53:30 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/07/17 09:16:24 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/07/17 12:00:44 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,10 @@ void	ft_ls(char *path, unsigned char flags)
 	struct dirent	*de;
 	t_dir			*initial;
 	DIR				*dr;
+	t_blocks		blocks;
 
+	blocks.flags = flags;
+	blocks.total = 0;
 	initial = NULL;
 	de = NULL;
 	dr = opendir(path);
@@ -55,13 +58,13 @@ void	ft_ls(char *path, unsigned char flags)
 	while ((de = readdir(dr)))
 	{
 		if (!initial)
-			initial = set_list(de, path);
+			initial = set_list(de, path, &blocks);
 		else
-			list_add(&initial, de, path);
+			list_add(&initial, de, path, &blocks);
 	}
 	closedir(dr);
 	merge_sort(&initial, flags);
-	print_output(initial, flags, path);
+	print_output(initial, flags, path, &blocks);
 	recursion(initial, flags, path);
 	delete_list(&initial);
 }
