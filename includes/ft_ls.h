@@ -6,7 +6,7 @@
 /*   By: mimeyer <mimeyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/28 09:17:47 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/07/16 10:40:27 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/07/17 09:18:10 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,8 @@ void				recursive_print(struct dirent *de, unsigned char flags,
 						char *path);
 
 // Sorting
-void FrontBackSplit(t_dir* source, t_dir** frontRef, t_dir** backRef);
-void MergeSort(t_dir** headRef, unsigned char flags);
-t_dir* SortedMerge(t_dir* a, t_dir* b, unsigned char flags);
+void front_back_sort(t_dir* source, t_dir** frontRef, t_dir** backRef);
+void merge_sort(t_dir** headRef, unsigned char flags);
+t_dir* sorted_merge(t_dir* a, t_dir* b, unsigned char flags);
 
 #endif

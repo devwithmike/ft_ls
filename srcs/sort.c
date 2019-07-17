@@ -6,64 +6,73 @@
 /*   By: mimeyer <mimeyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 14:33:41 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/07/10 14:40:06 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/07/17 09:30:34 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_ls.h"
 
-void MergeSort(t_dir** headRef, unsigned char flags)
+t_dir	*sorted_merge(t_dir *a, t_dir *b, unsigned char flags)
 {
-	t_dir* head = *headRef;
-	t_dir* a;
-	t_dir* b;
+	t_dir	*result;
 
-	if ((head == NULL) || (head->next == NULL)) {
-		return;
-	}
-	FrontBackSplit(head, &a, &b);
-	MergeSort(&a, flags);
-	MergeSort(&b, flags);
-	*headRef = SortedMerge(a, b, flags);
-}
-
-t_dir* SortedMerge(t_dir* a, t_dir* b, unsigned char flags)
-{
-	t_dir* result = NULL;
-
+	result = NULL;
 	if (a == NULL)
 		return (b);
 	else if (b == NULL)
 		return (a);
-	if (!(flags & 8) && ((ft_strcmp(a->name, b->name)) < 0)) {
+	if (!(flags & 8) && ((ft_strcmp(a->name, b->name)) < 0))
+	{
 		result = a;
-		result->next = SortedMerge(a->next, b, flags);
+		result->next = sorted_merge(a->next, b, flags);
 	}
-	else if ((flags & 8) && ((ft_strcmp(a->name, b->name)) > 0)) {
+	else if ((flags & 8) && ((ft_strcmp(a->name, b->name)) > 0))
+	{
 		result = a;
-		result->next = SortedMerge(a->next, b, flags);
+		result->next = sorted_merge(a->next, b, flags);
 	}
-	else {
+	else
+	{
 		result = b;
-		result->next = SortedMerge(a, b->next, flags);
+		result->next = sorted_merge(a, b->next, flags);
 	}
 	return (result);
 }
 
-void FrontBackSplit(t_dir* source, t_dir** frontRef, t_dir** backRef)
+void	merge_sort(t_dir **head_ref, unsigned char flags)
 {
-	t_dir* fast;
-	t_dir* slow;
+	t_dir	*head;
+	t_dir	*a;
+	t_dir	*b;
+
+	head = *head_ref;
+	if ((head == NULL) || (head->next == NULL))
+	{
+		return ;
+	}
+	front_back_sort(head, &a, &b);
+	merge_sort(&a, flags);
+	merge_sort(&b, flags);
+	*head_ref = sorted_merge(a, b, flags);
+}
+
+void	front_back_sort(t_dir *source, t_dir **front_ref, t_dir **back_ref)
+{
+	t_dir	*fast;
+	t_dir	*slow;
+
 	slow = source;
 	fast = source->next;
-	while (fast != NULL) {
+	while (fast != NULL)
+	{
 		fast = fast->next;
-		if (fast != NULL) {
+		if (fast != NULL)
+		{
 			slow = slow->next;
 			fast = fast->next;
 		}
 	}
-	*frontRef = source;
-	*backRef = slow->next;
+	*front_ref = source;
+	*back_ref = slow->next;
 	slow->next = NULL;
 }

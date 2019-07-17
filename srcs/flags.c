@@ -6,7 +6,7 @@
 /*   By: mimeyer <mimeyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 10:27:28 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/07/16 11:00:07 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/07/17 09:25:54 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,8 @@ unsigned char	get_flags(int ac, char **av)
 	while (i < ac)
 	{
 		j = 0;
-		if (av[i][j] == '-')
+		if (av[i][j++] == '-')
 		{
-			j++;
 			if (av[i][j] == '-')
 				break ;
 			while (av[i][j] == 'l' || av[i][j] == 'a' || av[i][j] == 'R' ||
