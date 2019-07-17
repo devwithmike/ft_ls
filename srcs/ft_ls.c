@@ -6,7 +6,7 @@
 /*   By: mimeyer <mimeyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/28 08:53:30 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/07/17 12:00:44 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/07/17 15:06:32 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,5 @@ int		main(int ac, char **av)
 		if (check == 0)
 			ft_ls(".", flags);
 	}
-	ft_putchar('\n');
 	return (0);
 }
