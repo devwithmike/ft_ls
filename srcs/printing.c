@@ -6,7 +6,7 @@
 /*   By: mimeyer <mimeyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 14:48:22 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/07/17 11:40:59 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/07/17 15:03:03 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,10 @@ void	print_normal(t_dir *list, unsigned char flags)
 
 void	print_recursion(char *path)
 {
-	if ((ft_strcmp(path, "./") != 0) || (ft_strcmp(path, ".") != 0))
+	if ((ft_strcmp(path, "./") != 0) && (ft_strcmp(path, ".") != 0)
+		&& (ft_strcmp(path, "..") != 0))
 	{
-		ft_putstr("\n");
+		ft_putstr("\n\n");
 		ft_putstr(path);
 		ft_putstr(":\n");
 	}

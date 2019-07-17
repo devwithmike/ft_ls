@@ -6,7 +6,7 @@
 /*   By: mimeyer <mimeyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/16 10:00:40 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/07/17 09:21:57 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/07/17 14:57:09 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	add_args(char **args, int ac, char **av)
 	j = 0;
 	while (i < ac)
 	{
-		if (av[i][0] == '-')
+		if (av[i][0] == '-' && (ft_strlen(av[i]) > 1))
 			i++;
 		else
 			break ;
