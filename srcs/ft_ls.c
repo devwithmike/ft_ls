@@ -6,7 +6,7 @@
 /*   By: mimeyer <mimeyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/28 08:53:30 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/07/17 15:29:09 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/07/19 09:20:24 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ int		main(int ac, char **av)
 	else
 	{
 		add_args(args, ac, av);
-		check = execute_args(args, flags);
+		check = execute_args(args, flags, ac);
 		if (check == 0)
 			ft_ls(".", flags);
 	}

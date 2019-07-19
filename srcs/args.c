@@ -6,7 +6,7 @@
 /*   By: mimeyer <mimeyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/16 10:00:40 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/07/19 09:00:17 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/07/19 09:33:39 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	add_args(char **args, int ac, char **av)
 	j = 0;
 	while (i < ac)
 	{
-		if (av[i][0] == '-' && (ft_strlen(av[i]) > 1) && av[i][1] != '-')
+		if ((av[i][0] == '-') && (ft_strlen(av[i]) > 1) && (av[i][1] != '-'))
 			i++;
 		else if (av[i][0] == '-' && av[i][1] == '-')
 		{
@@ -61,7 +61,7 @@ void	add_args(char **args, int ac, char **av)
 	sort_args(args);
 }
 
-int		execute_args(char **args, unsigned char flags)
+int		execute_args(char **args, unsigned char flags, int ac)
 {
 	int i;
 	int check;
@@ -70,9 +70,16 @@ int		execute_args(char **args, unsigned char flags)
 	check = 0;
 	while (args[i] != NULL)
 	{
+		if (ac > 2)
+		{
+			ft_putstr(args[i]);
+			ft_putstr(":\n");
+		}
 		ft_ls(args[i], flags);
-		check = 1;
 		i++;
+		if ((i + 1 != ac) && (i < ac))
+			ft_putchar('\n');
+		check = 1;
 	}
 	return (check);
 }
