@@ -6,7 +6,7 @@
 /*   By: mimeyer <mimeyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/28 09:17:47 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/07/19 09:20:50 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/07/19 09:35:55 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int					check_flags(char c);
 int					error_file(char *path);
 int					error_permission(char *path);
 int					check_errors(char *path, DIR *dr);
-int					execute_args(char **av, unsigned char flags, int ac);
+int					execute_args(char **args, unsigned char flags, int ac);
 
 void				add_args(char **args, int ac, char **av);
 void				sort_args(char **args);

@@ -6,7 +6,7 @@
 /*   By: mimeyer <mimeyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 10:27:28 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/07/19 09:30:07 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/07/19 09:56:13 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,23 +16,24 @@ void			incorrect_flags(char c)
 {
 	ft_putstr("ft_ls: illegal option -- ");
 	ft_putchar(c);
-	ft_putstr("\nusage: ft_ls [-alRrt] [file ...]\n");
+	ft_putstr("\nusage: ./ft_ls [-alRrt1] [file ...]\n");
 }
 
 int				check_flags(char c)
 {
 	if (c == 'l')
 		return (1);
-	else if (c == 'a')
+	if (c == 'a')
 		return (2);
-	else if (c == 'R')
+	if (c == 'R')
 		return (4);
-	else if (c == 'r')
+	if (c == 'r')
 		return (8);
-	else if (c == 't')
+	if (c == 't')
 		return (16);
-	else
-		return (128);
+	if (c == '1')
+		return (32);
+	return (128);
 }
 
 unsigned char	get_flags(int ac, char **av)
