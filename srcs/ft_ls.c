@@ -6,7 +6,7 @@
 /*   By: mimeyer <mimeyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/28 08:53:30 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/07/19 09:20:24 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/07/19 10:35:37 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,16 +74,16 @@ int		main(int ac, char **av)
 	unsigned char	flags;
 	int				check;
 	char			*args[ac];
+	int				j;
 
 	check = 0;
-	if ((flags = get_flags(ac, av)) == '\0')
-		return (0);
+	flags = get_flags(ac, av);
 	if (ac == 1)
 		ft_ls(".", flags);
 	else
 	{
-		add_args(args, ac, av);
-		check = execute_args(args, flags, ac);
+		j = add_args(args, ac, av);
+		check = execute_args(args, flags, j);
 		if (check == 0)
 			ft_ls(".", flags);
 	}

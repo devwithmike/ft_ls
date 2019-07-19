@@ -6,7 +6,7 @@
 /*   By: mimeyer <mimeyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/16 10:00:40 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/07/19 09:58:25 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/07/19 10:31:47 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	sort_args(char **args)
 	}
 }
 
-void	add_args(char **args, int ac, char **av)
+int		add_args(char **args, int ac, char **av)
 {
 	int i;
 	int j;
@@ -59,6 +59,7 @@ void	add_args(char **args, int ac, char **av)
 	}
 	args[j] = NULL;
 	sort_args(args);
+	return(j);
 }
 
 int		execute_args(char **args, unsigned char flags, int ac)
@@ -77,7 +78,7 @@ int		execute_args(char **args, unsigned char flags, int ac)
 		}
 		ft_ls(args[i], flags);
 		i++;
-		if ((i + 1 != ac) && (i < ac))
+		if (i + 1 < ac)
 			ft_putchar('\n');
 		check = 1;
 	}

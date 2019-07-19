@@ -6,7 +6,7 @@
 /*   By: mimeyer <mimeyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 10:27:28 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/07/19 10:21:10 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/07/19 10:34:51 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ unsigned char	execute_flags(char **av, int i, int j, unsigned char flags)
 		if (flags & 128)
 		{
 			incorrect_flags(av[i][j]);
-			flags = '\0';
+			exit(1);
 		}
 		j++;
 	}
