@@ -6,7 +6,7 @@
 /*   By: mimeyer <mimeyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 14:48:22 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/07/19 09:03:20 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/07/19 10:11:01 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,8 @@ void	print_recursion(char *path)
 	}
 }
 
-void	print_output(t_dir *list, unsigned char flags, char *path, t_blocks *blocks)
+void	print_output(t_dir *list, unsigned char flags,
+					char *path, t_blocks *blocks)
 {
 	if (flags & 1)
 	{

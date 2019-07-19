@@ -6,7 +6,7 @@
 /*   By: mimeyer <mimeyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/28 09:17:47 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/07/19 09:35:55 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/07/19 10:21:28 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ void	set_blocks(int block, t_blocks *total, char *name);
 t_dir	*set_list(struct dirent *de, char *path, t_blocks *blocks);
 
 unsigned char		get_flags(int ac, char **av);
+unsigned char	execute_flags(char **av, int i, int j, unsigned char flags);
 
 void				print_time(char *str);
 void				convert_time(char *str);

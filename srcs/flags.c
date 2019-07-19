@@ -6,7 +6,7 @@
 /*   By: mimeyer <mimeyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 10:27:28 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/07/19 09:56:13 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/07/19 10:21:10 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,21 @@ int				check_flags(char c)
 	return (128);
 }
 
+unsigned char	execute_flags(char **av, int i, int j, unsigned char flags)
+{
+	while (av[i][j])
+	{
+		flags += check_flags(av[i][j]);
+		if (flags & 128)
+		{
+			incorrect_flags(av[i][j]);
+			flags = '\0';
+		}
+		j++;
+	}
+	return (flags);
+}
+
 unsigned char	get_flags(int ac, char **av)
 {
 	int				i;
@@ -51,16 +66,7 @@ unsigned char	get_flags(int ac, char **av)
 		{
 			if ((av[i][j] == '-') && (av[i][j + 1] != '-'))
 				break ;
-			while (av[i][j])
-			{
-				flags += check_flags(av[i][j]);
-				if (flags & 128)
-				{
-					incorrect_flags(av[i][j]);
-					return ('\0');
-				}
-				j++;
-			}
+			flags = execute_flags(av, i, j, flags);
 		}
 		else
 			break ;
