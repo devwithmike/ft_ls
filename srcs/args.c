@@ -6,7 +6,7 @@
 /*   By: mimeyer <mimeyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/16 10:00:40 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/07/22 15:01:21 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/07/22 15:29:49 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,14 +52,23 @@ int		add_args(char **args, int ac, char **av)
 			break ;
 	}
 	while (i < ac)
-	{
-		args[j] = av[i];
-		i++;
-		j++;
-	}
+		args[j++] = av[i++];
 	args[j] = NULL;
 	sort_args(args);
-	return(j);
+	return (j);
+}
+
+void	files_args(char **args, unsigned char flags)
+{
+	int i;
+
+	i = -1;
+	while (args[++i] != NULL)
+		if (!(isdir(args[i])))
+		{
+			ft_ls(args[i], flags);
+			ft_putchar('\n');
+		}
 }
 
 int		execute_args(char **args, unsigned char flags, int ac)
@@ -67,19 +76,22 @@ int		execute_args(char **args, unsigned char flags, int ac)
 	int i;
 	int check;
 
-	i = 0;
 	check = 0;
-	while (args[i] != NULL)
+	files_args(args, flags);
+	i = -1;
+	while (args[++i] != NULL)
 	{
-		if (ac > 1 && isdir(args[i]))
+		if (isdir(args[i]))
 		{
-			ft_putstr(args[i]);
-			ft_putstr(":\n");
+			if (ac > 1 && !(flags & 4))
+			{
+				ft_putstr(args[i]);
+				ft_putstr(":\n");
+			}
+			ft_ls(args[i], flags);
+			if (i + 1 < ac)
+				ft_putchar('\n');
 		}
-		ft_ls(args[i], flags);
-		if (i + 1 < ac)
-			ft_putchar('\n');
-		i++;
 		check = 1;
 	}
 	return (check);
