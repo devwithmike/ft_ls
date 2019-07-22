@@ -6,7 +6,7 @@
 /*   By: mimeyer <mimeyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/28 09:17:47 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/07/19 10:27:37 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/07/22 14:57:49 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ typedef struct		s_blocks
 
 
 int					check_flags(char c);
+
+int		isdir(const char *path);
 int					error_file(char *path);
 int					error_permission(char *path);
 int					check_errors(char *path, DIR *dr);

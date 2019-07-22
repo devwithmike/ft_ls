@@ -6,7 +6,7 @@
 /*   By: mimeyer <mimeyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/16 10:00:40 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/07/19 10:31:47 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/07/22 15:01:21 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,15 +71,15 @@ int		execute_args(char **args, unsigned char flags, int ac)
 	check = 0;
 	while (args[i] != NULL)
 	{
-		if (ac > 2)
+		if (ac > 1 && isdir(args[i]))
 		{
 			ft_putstr(args[i]);
 			ft_putstr(":\n");
 		}
 		ft_ls(args[i], flags);
-		i++;
 		if (i + 1 < ac)
 			ft_putchar('\n');
+		i++;
 		check = 1;
 	}
 	return (check);
