@@ -6,7 +6,7 @@
 /*   By: mimeyer <mimeyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/05 12:09:38 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/07/17 11:37:33 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/07/22 08:59:44 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_dir	*set_list(struct dirent *de, char *path, t_blocks *blocks)
 
 	if (!(new = (t_dir *)malloc(sizeof(*new))))
 		return (NULL);
-	tmp_path = ft_strjoin(path, "/");
+	tmp_path = ft_strjoin(path, path[ft_strlen(path) - 1] != '/' ? "/" : "");
 	tmp = ft_strjoin(tmp_path, de->d_name);
 	lstat(tmp, &sb);
 	new->name = ft_strdup(de->d_name);

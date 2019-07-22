@@ -6,7 +6,7 @@
 /*   By: mimeyer <mimeyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/28 08:53:30 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/07/19 10:35:37 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/07/22 09:13:41 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,25 +20,25 @@ void	recursion(t_dir *list, unsigned char flags, char *path)
 	char	*s2;
 
 	ptr = list;
-	if (flags & 4)
-		while (ptr != NULL)
+	while (ptr != NULL)
+	{
+		if ((ptr->type == 4) && (ft_strcmp(ptr->name, ".") != 0)
+		&& (ft_strcmp(ptr->name, "..") != 0))
 		{
-			if ((ptr->type == 4) && (ft_strcmp(ptr->name, ".") != 0)
-			&& (ft_strcmp(ptr->name, "..") != 0))
+			if (!(flags & 2) && (ptr->name[0] == '.'))
 			{
-				if (!(flags & 2) && (ptr->name[0] == '.'))
-				{
-					ptr = ptr->next;
-					continue ;
-				}
-				s1 = ft_strjoin("/", ptr->name);
-				s2 = ft_strjoin(path, s1);
-				free(s1);
-				ft_ls(s2, flags);
-				free(s2);
+				ptr = ptr->next;
+				continue ;
 			}
-			ptr = ptr->next;
+			s1 = ft_strjoin(path[ft_strlen(path) - 1] != '/' ? "/" : "",
+						ptr->name);
+			s2 = ft_strjoin(path, s1);
+			free(s1);
+			ft_ls(s2, flags);
+			free(s2);
 		}
+		ptr = ptr->next;
+	}
 }
 
 void	ft_ls(char *path, unsigned char flags)
@@ -65,7 +65,8 @@ void	ft_ls(char *path, unsigned char flags)
 	closedir(dr);
 	merge_sort(&initial, flags);
 	print_output(initial, flags, path, &blocks);
-	recursion(initial, flags, path);
+	if (flags & 4)
+		recursion(initial, flags, path);
 	delete_list(&initial);
 }
 
