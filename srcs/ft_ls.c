@@ -6,7 +6,7 @@
 /*   By: mimeyer <mimeyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/28 08:53:30 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/07/22 14:37:59 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/07/23 09:59:53 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,12 @@ void	recursion(t_dir *list, unsigned char flags, char *path)
 	}
 }
 
+void	check_sort(t_dir *initial, unsigned char flags)
+{
+	if (!(flags & 128))
+		merge_sort(&initial, flags);
+}
+
 void	ft_ls(char *path, unsigned char flags)
 {
 	struct dirent	*de;
@@ -63,7 +69,7 @@ void	ft_ls(char *path, unsigned char flags)
 			list_add(&initial, de, path, &blocks);
 	}
 	closedir(dr);
-	merge_sort(&initial, flags);
+	check_sort(initial, flags);
 	print_output(initial, flags, path, &blocks);
 	if (flags & 4)
 		recursion(initial, flags, path);
