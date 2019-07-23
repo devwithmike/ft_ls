@@ -6,7 +6,7 @@
 /*   By: mimeyer <mimeyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/12 09:48:27 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/07/15 15:09:18 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/07/23 08:46:39 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,15 +50,24 @@ void	format_size(t_dir *list)
 
 void	format_permissions(t_dir *list)
 {
-	ft_putstr((list->mode & S_IRUSR) ? "r" : "-");
-	ft_putstr((list->mode & S_IWUSR) ? "w" : "-");
-	ft_putstr((list->mode & S_IXUSR) ? "x" : "-");
-	ft_putstr((list->mode & S_IRGRP) ? "r" : "-");
-	ft_putstr((list->mode & S_IWGRP) ? "w" : "-");
-	ft_putstr((list->mode & S_IXGRP) ? "x" : "-");
-	ft_putstr((list->mode & S_IROTH) ? "r" : "-");
-	ft_putstr((list->mode & S_IWOTH) ? "w" : "-");
-	ft_putstr((list->mode & S_IXOTH) ? "x  " : "-  ");
+	ft_putchar((list->mode & S_IRUSR) ? 'r' : '-');
+	ft_putchar((list->mode & S_IWUSR) ? 'w' : '-');
+	if (list->mode & S_ISUID)
+		ft_putchar((list->mode & S_IXUSR) ? 's' : 'S');
+	else
+		ft_putchar((list->mode & S_IXUSR) ? 'x' : '-');
+	ft_putchar((list->mode & S_IRGRP) ? 'r' : '-');
+	ft_putchar((list->mode & S_IWGRP) ? 'w' : '-');
+	if (list->mode & S_ISGID)
+		ft_putchar((list->mode & S_IXGRP) ? 's' : 'S');
+	else
+		ft_putchar((list->mode & S_IXGRP) ? 'x' : '-');
+	ft_putchar((list->mode & S_IROTH) ? 'r' : '-');
+	ft_putchar((list->mode & S_IWOTH) ? 'w' : '-');
+	if (list->mode & S_ISVTX)
+		ft_putstr((list->mode & S_IXOTH) ? "t  " : "T  ");
+	else
+		ft_putstr((list->mode & S_IXOTH) ? "x  " : "-  ");
 }
 
 void	format_long(t_dir *list)
