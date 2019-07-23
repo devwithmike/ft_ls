@@ -6,11 +6,30 @@
 /*   By: mimeyer <mimeyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 14:33:41 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/07/23 13:26:31 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/07/23 14:49:25 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_ls.h"
+
+void	rev_lst(t_dir **head)
+{
+	t_dir	*cur;
+	t_dir	*next;
+	t_dir	*prev;
+
+	next = NULL;
+	prev = NULL;
+	cur = *head;
+	while (cur != NULL)
+	{
+		next = cur->next;
+		cur->next = prev;
+		prev = cur;
+		cur = next;
+	}
+	*head = prev;
+}
 
 t_dir	*sorted_merge(t_dir *a, t_dir *b, int flags)
 {
@@ -48,6 +67,11 @@ void	merge_sort(t_dir **head_ref, int flags)
 	head = *head_ref;
 	if ((head == NULL) || (head->next == NULL))
 	{
+		return ;
+	}
+	if (flags & 128)
+	{
+		rev_lst(head_ref);
 		return ;
 	}
 	front_back_sort(head, &a, &b);
