@@ -6,20 +6,20 @@
 /*   By: mimeyer <mimeyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 10:27:28 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/07/23 10:02:01 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/07/23 10:16:27 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_ls.h"
 
-void			incorrect_flags(char c)
+void	incorrect_flags(char c)
 {
 	ft_putstr("ft_ls: illegal option -- ");
 	ft_putchar(c);
 	ft_putstr("\nusage: ./ft_ls [-alRrt1] [file ...]\n");
 }
 
-int				check_flags(char c)
+int		check_flags(char c)
 {
 	if (c == 'l')
 		return (1);
@@ -40,7 +40,7 @@ int				check_flags(char c)
 	return (256);
 }
 
-unsigned char	execute_flags(char **av, int i, int j, unsigned char flags)
+int		execute_flags(char **av, int i, int j, int flags)
 {
 	while (av[i][j])
 	{
@@ -57,11 +57,11 @@ unsigned char	execute_flags(char **av, int i, int j, unsigned char flags)
 	return (flags);
 }
 
-unsigned char	get_flags(int ac, char **av)
+int		get_flags(int ac, char **av)
 {
-	int				i;
-	int				j;
-	unsigned char	flags;
+	int	i;
+	int	j;
+	int	flags;
 
 	flags = ' ';
 	i = 1;

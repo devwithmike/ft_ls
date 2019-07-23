@@ -6,13 +6,13 @@
 /*   By: mimeyer <mimeyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 14:33:41 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/07/17 09:30:34 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/07/23 10:10:57 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_ls.h"
 
-t_dir	*sorted_merge(t_dir *a, t_dir *b, unsigned char flags)
+t_dir	*sorted_merge(t_dir *a, t_dir *b, int flags)
 {
 	t_dir	*result;
 
@@ -39,7 +39,7 @@ t_dir	*sorted_merge(t_dir *a, t_dir *b, unsigned char flags)
 	return (result);
 }
 
-void	merge_sort(t_dir **head_ref, unsigned char flags)
+void	merge_sort(t_dir **head_ref, int flags)
 {
 	t_dir	*head;
 	t_dir	*a;
