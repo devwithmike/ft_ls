@@ -6,7 +6,7 @@
 /*   By: mimeyer <mimeyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/16 10:00:40 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/07/23 10:33:37 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/07/23 15:47:01 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	sort_args(char **args, int ac)
 	{
 		j = i;
 		while (++j < ac)
-			if (ft_strcmp(args[i], args[j]) > 0)
+			if ((ft_strcmp(args[i], args[j]) < 0) || (ft_strcmp(args[i], args[j]) > 0))
 			{
 				tmp = args[i];
 				args[i] = args[j];
