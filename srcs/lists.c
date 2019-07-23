@@ -6,7 +6,7 @@
 /*   By: mimeyer <mimeyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/05 12:09:38 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/07/23 10:15:40 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/07/23 13:34:21 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,17 +59,9 @@ void	delete_list(t_dir **list)
 
 void	list_add(t_dir **alst, struct dirent *de, char *path, t_blocks *blocks)
 {
-	t_dir	*new;
-	t_dir	*tail;
+	t_dir *new;
 
-	tail = *alst;
 	new = set_list(de, path, blocks);
-	if (*alst == NULL)
-		(*alst)->next = new;
-	else
-	{
-		while (tail->next != NULL)
-			tail = tail->next;
-		tail->next = new;
-	}
+	new->next = *alst;
+	*alst = new;
 }

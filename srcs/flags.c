@@ -6,7 +6,7 @@
 /*   By: mimeyer <mimeyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 10:27:28 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/07/23 12:25:39 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/07/23 13:40:35 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	incorrect_flags(char c)
 {
 	ft_putstr("ft_ls: illegal option -- ");
 	ft_putchar(c);
-	ft_putstr("\nusage: ./ft_ls [-AGRaflnprt1] [file ...]\n");
+	ft_putstr("\nusage: ./ft_ls [-AGRalnprt1] [file ...]\n");
 }
 
 int		check_flags(char c)
@@ -35,11 +35,11 @@ int		check_flags(char c)
 		return (32);
 	if (c == 'n')
 		return (64);
-	if (c == 'f')
+	if (c == 'w') // REMOVE THIS SHIT
 		return (128);
-	if (c == 'p')
+	if (c == 'p') // THIS DOES NOTHING YET
 		return (256);
-	if (c == 'G')
+	if (c == 'G') // THIS DOES NOTHING YET
 		return (512);
 	if (c == 'A')
 		return (1024);
