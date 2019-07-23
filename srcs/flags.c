@@ -6,7 +6,7 @@
 /*   By: mimeyer <mimeyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 10:27:28 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/07/19 10:34:51 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/07/23 08:18:56 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ int				check_flags(char c)
 		return (16);
 	if (c == '1')
 		return (32);
+	if (c == 'n')
+		return (64);
 	return (128);
 }
 

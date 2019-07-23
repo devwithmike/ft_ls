@@ -6,7 +6,7 @@
 /*   By: mimeyer <mimeyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/28 09:17:47 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/07/22 15:21:24 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/07/23 08:10:16 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ typedef struct		s_blocks
 
 int					check_flags(char c);
 
-int		isdir(const char *path);
-void	files_args(char **args, unsigned char flags);
+int					isdir(const char *path);
+void				files_args(char **args, unsigned char flags);
 int					error_file(char *path);
 int					error_permission(char *path);
 int					check_errors(char *path, DIR *dr);
@@ -57,8 +57,8 @@ int					execute_args(char **args, unsigned char flags, int ac);
 int				add_args(char **args, int ac, char **av);
 void				sort_args(char **args);
 
-char				*convert_un(int uid);
-char				*convert_gn(int gib);
+char				*convert_un(int uid, t_blocks *flags);
+char				*convert_gn(int gib, t_blocks *flags);
 
 void	set_blocks(int block, t_blocks *total, char *name);
 

@@ -6,7 +6,7 @@
 /*   By: mimeyer <mimeyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/05 12:09:38 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/07/22 08:59:44 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/07/23 08:05:15 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ t_dir	*set_list(struct dirent *de, char *path, t_blocks *blocks)
 	lstat(tmp, &sb);
 	new->name = ft_strdup(de->d_name);
 	new->nlink = sb.st_nlink;
-	new->uid = convert_un(sb.st_uid);
-	new->gid = convert_gn(sb.st_gid);
+	new->uid = convert_un(sb.st_uid, blocks);
+	new->gid = convert_gn(sb.st_gid, blocks);
 	new->size = sb.st_size;
 	new->type = de->d_type;
 	new->mode = sb.st_mode;

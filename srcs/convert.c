@@ -6,7 +6,7 @@
 /*   By: mimeyer <mimeyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 11:17:49 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/07/15 15:09:01 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/07/23 08:08:52 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,22 +28,22 @@ void	convert_nlink(char *path, t_dir *list)
 	free(full);
 }
 
-char	*convert_un(int uid)
+char	*convert_un(int uid, t_blocks *flags)
 {
 	struct passwd *pwd;
 
 	pwd = getpwuid(uid);
-	if (pwd != NULL)
+	if ((pwd != NULL) && !(flags->flags & 64))
 		return (ft_strdup(pwd->pw_name));
 	return (ft_itoa(uid));
 }
 
-char	*convert_gn(int gib)
+char	*convert_gn(int gib, t_blocks *flags)
 {
 	struct group *grp;
 
 	grp = getgrgid(gib);
-	if (grp != NULL)
+	if ((grp != NULL) && !(flags->flags & 64))
 		return (ft_strdup(grp->gr_name));
 	return (ft_itoa(gib));
 }
