@@ -6,7 +6,7 @@
 /*   By: mimeyer <mimeyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 10:27:28 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/07/23 10:16:27 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/07/23 12:25:39 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	incorrect_flags(char c)
 {
 	ft_putstr("ft_ls: illegal option -- ");
 	ft_putchar(c);
-	ft_putstr("\nusage: ./ft_ls [-alRrt1] [file ...]\n");
+	ft_putstr("\nusage: ./ft_ls [-AGRaflnprt1] [file ...]\n");
 }
 
 int		check_flags(char c)
@@ -37,7 +37,13 @@ int		check_flags(char c)
 		return (64);
 	if (c == 'f')
 		return (128);
-	return (256);
+	if (c == 'p')
+		return (256);
+	if (c == 'G')
+		return (512);
+	if (c == 'A')
+		return (1024);
+	return (2048);
 }
 
 int		execute_flags(char **av, int i, int j, int flags)
@@ -45,14 +51,14 @@ int		execute_flags(char **av, int i, int j, int flags)
 	while (av[i][j])
 	{
 		flags += check_flags(av[i][j]);
-		if (flags & 256)
+		if (flags & 2048)
 		{
 			incorrect_flags(av[i][j]);
 			exit(1);
 		}
 		j++;
 	}
-	if (flags & 128 && !(flags & 2))
+	if ((flags & 128 && !(flags & 2)) || flags & 1024)
 		flags += 2;
 	return (flags);
 }

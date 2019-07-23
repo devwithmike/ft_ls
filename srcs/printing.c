@@ -6,7 +6,7 @@
 /*   By: mimeyer <mimeyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 14:48:22 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/07/23 10:10:57 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/07/23 12:52:56 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,13 @@ void	print_list(t_dir *list, int flags, char *path)
 	ptr = list;
 	while (ptr != NULL)
 	{
-		if (flags & 2)
+		if ((flags & 2) && (flags & 1024))
+		{
+			if ((ft_strcmp(ptr->name, ".") != 0) &&
+			(ft_strcmp(ptr->name, "..") != 0))
+				format_line(ptr, path);
+		}
+		else if ((flags & 2) && !(flags & 1024))
 			format_line(ptr, path);
 		else
 		{
@@ -45,23 +51,20 @@ void	print_normal(t_dir *list, int flags)
 	ptr = list;
 	while (ptr != NULL)
 	{
-		if (flags & 2)
+		if ((flags & 2) && (flags & 1024))
 		{
-			ft_putstr(ptr->name);
-			if (ptr->next != NULL)
-				ft_putstr("\n");
-			ptr = ptr->next;
+			if ((ft_strcmp(ptr->name, ".") != 0) &&
+			(ft_strcmp(ptr->name, "..") != 0))
+				format_normal(ptr);
 		}
+		else if ((flags & 2) && !(flags & 1024))
+			format_normal(ptr);
 		else
 		{
 			if (ptr->name[0] != '.')
-			{
-				ft_putstr(ptr->name);
-				if (ptr->next != NULL)
-					ft_putstr("\n");
-			}
-			ptr = ptr->next;
+				format_normal(ptr);
 		}
+		ptr = ptr->next;
 	}
 	if (!(flags & 8))
 		ft_putchar('\n');

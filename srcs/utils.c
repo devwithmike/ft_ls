@@ -6,7 +6,7 @@
 /*   By: mimeyer <mimeyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/17 10:52:19 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/07/22 14:57:36 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/07/23 12:33:29 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,4 +29,11 @@ int		isdir(const char *path)
 
 	stat(path, &s);
 	return (S_ISDIR(s.st_mode));
+}
+
+void	format_normal(t_dir *ptr)
+{
+	ft_putstr(ptr->name);
+	if (ptr->next != NULL)
+		ft_putstr("\n");
 }
