@@ -6,7 +6,7 @@
 /*   By: mimeyer <mimeyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 10:27:28 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/07/23 14:49:30 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/07/26 09:48:23 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int		check_flags(char c)
 		return (64);
 	if (c == 'f')
 		return (128);
-	if (c == 'p') // THIS DOES NOTHING YET
+	if (c == 'p')
 		return (256);
 	if (c == 'G') // THIS DOES NOTHING YET
 		return (512);
@@ -58,8 +58,13 @@ int		execute_flags(char **av, int i, int j, int flags)
 		}
 		j++;
 	}
-	if ((flags & 128 && !(flags & 2)) || flags & 1024)
+	if (((flags & 128) || (flags & 1024)) && !(flags & 2))
 		flags += 2;
+	if (flags & 128)
+	{
+		flags -= 1;
+		flags -= 16;
+	}
 	return (flags);
 }
 

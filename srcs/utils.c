@@ -6,7 +6,7 @@
 /*   By: mimeyer <mimeyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/17 10:52:19 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/07/23 12:33:29 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/07/26 09:33:43 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,35 @@ int		isdir(const char *path)
 	return (S_ISDIR(s.st_mode));
 }
 
-void	format_normal(t_dir *ptr)
+void	format_normal(t_dir *ptr, int flags)
 {
-	ft_putstr(ptr->name);
+	format_name(ptr, flags);
 	if (ptr->next != NULL)
 		ft_putstr("\n");
+}
+
+void	format_acl(t_dir *ptr)
+{
+	acl_t			acl;
+
+	if ((listxattr(ptr->path, 0, 0, XATTR_NOFOLLOW) > 0))
+	{
+		ft_putstr("@  ");
+		return ;
+	}
+	if ((acl = acl_get_link_np(ptr->path, ACL_TYPE_EXTENDED)))
+	{
+		free(acl);
+		ft_putstr("+  ");
+		return ;
+	}
+	ft_putstr("   ");
+}
+
+void	format_name(t_dir *ptr, int flags)
+{
+	ft_putstr(ptr->name);
+	if (flags & 256)
+		if (isdir(ptr->path))
+			ft_putchar('/');
 }

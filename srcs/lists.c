@@ -6,7 +6,7 @@
 /*   By: mimeyer <mimeyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/05 12:09:38 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/07/23 13:34:21 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/07/26 09:05:05 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ t_dir	*set_list(struct dirent *de, char *path, t_blocks *blocks)
 	new->type = de->d_type;
 	new->mode = sb.st_mode;
 	new->time = sb.st_mtime;
+	new->path = ft_strdup(tmp);
 	new->next = NULL;
 	set_blocks(sb.st_blocks, blocks, new->name);
 	free(tmp_path);
@@ -51,6 +52,7 @@ void	delete_list(t_dir **list)
 		free(current->name);
 		free(current->uid);
 		free(current->gid);
+		free(current->path);
 		free(current);
 		current = next;
 	}

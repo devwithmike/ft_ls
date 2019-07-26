@@ -6,7 +6,7 @@
 /*   By: mimeyer <mimeyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 14:48:22 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/07/23 12:52:56 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/07/26 09:29:58 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,14 @@ void	print_list(t_dir *list, int flags, char *path)
 		{
 			if ((ft_strcmp(ptr->name, ".") != 0) &&
 			(ft_strcmp(ptr->name, "..") != 0))
-				format_line(ptr, path);
+				format_line(ptr, path, flags);
 		}
 		else if ((flags & 2) && !(flags & 1024))
-			format_line(ptr, path);
+			format_line(ptr, path, flags);
 		else
 		{
 			if (ft_strncmp(ptr->name, ".", 1) != 0)
-				format_line(ptr, path);
+				format_line(ptr, path, flags);
 		}
 		ptr = ptr->next;
 	}
@@ -55,14 +55,14 @@ void	print_normal(t_dir *list, int flags)
 		{
 			if ((ft_strcmp(ptr->name, ".") != 0) &&
 			(ft_strcmp(ptr->name, "..") != 0))
-				format_normal(ptr);
+				format_normal(ptr, flags);
 		}
 		else if ((flags & 2) && !(flags & 1024))
-			format_normal(ptr);
+			format_normal(ptr, flags);
 		else
 		{
 			if (ptr->name[0] != '.')
-				format_normal(ptr);
+				format_normal(ptr, flags);
 		}
 		ptr = ptr->next;
 	}

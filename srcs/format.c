@@ -6,7 +6,7 @@
 /*   By: mimeyer <mimeyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/12 09:48:27 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/07/23 08:48:05 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/07/26 09:28:32 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,9 +65,10 @@ void	format_permissions(t_dir *list)
 	ft_putchar((list->mode & S_IROTH) ? 'r' : '-');
 	ft_putchar((list->mode & S_IWOTH) ? 'w' : '-');
 	if (list->mode & S_ISVTX)
-		ft_putstr((list->mode & S_IXOTH) ? "t  " : "T  ");
+		ft_putstr((list->mode & S_IXOTH) ? "t" : "T");
 	else
-		ft_putstr((list->mode & S_IXOTH) ? "x  " : "-  ");
+		ft_putstr((list->mode & S_IXOTH) ? "x" : "-");
+	format_acl(list);
 }
 
 void	format_long(t_dir *list)
@@ -88,7 +89,7 @@ void	format_long(t_dir *list)
 		ft_putchar('-');
 }
 
-void	format_line(t_dir *list, char *path)
+void	format_line(t_dir *list, char *path, int flags)
 {
 	format_long(list);
 	format_permissions(list);
@@ -100,7 +101,7 @@ void	format_line(t_dir *list, char *path)
 	format_size(list);
 	convert_time(ctime(&list->time));
 	ft_putstr(" ");
-	ft_putstr(list->name);
+	format_name(list, flags);
 	if (S_ISLNK(list->mode))
 		convert_nlink(path, list);
 	if (list->next != NULL)

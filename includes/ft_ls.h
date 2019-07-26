@@ -6,7 +6,7 @@
 /*   By: mimeyer <mimeyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/28 09:17:47 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/07/23 12:38:10 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/07/26 09:28:50 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 # include <sys/types.h>
 # include <pwd.h>
 # include <grp.h>
+# include <sys/acl.h>
+# include <sys/xattr.h>
 # include <uuid/uuid.h>
 # include <errno.h>
 # include <time.h>
@@ -34,6 +36,7 @@ typedef struct		s_dir
 	off_t			size;
 	int				type;
 	time_t			time;
+	char			*path;
 	int				block;
 	struct s_dir	*next;
 }					t_dir;
@@ -45,8 +48,11 @@ typedef struct		s_blocks
 }					t_blocks;
 
 
+void	format_acl(t_dir *ptr);
+void	format_name(t_dir *ptr, int flags);
+
 int					check_flags(char c);
-void	format_normal(t_dir *ptr);
+void	format_normal(t_dir *ptr, int flags);
 
 int					isdir(const char *path);
 void				files_args(char **args, int flags);
@@ -73,7 +79,7 @@ void				convert_time(char *str);
 void				format_nlink(t_dir *list);
 void				format_size(t_dir *list);
 void				convert_nlink(char *path, t_dir *list);
-void				format_line(t_dir *list, char *path);
+void				format_line(t_dir *list, char *path, int flags);
 void				format_long(t_dir *list);
 void				format_permissions(t_dir *list);
 void				delete_list(t_dir **list);
