@@ -6,14 +6,14 @@
 /*   By: mimeyer <mimeyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/28 08:53:30 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/07/26 09:36:54 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/07/29 09:40:34 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include "../includes/ft_ls.h"
 
-void	recursion(t_dir *list, int flags, char *path)
+void	recursion(t_dir *list, int flags, char *path, int ac)
 {
 	t_dir	*ptr;
 	char	*s1;
@@ -34,22 +34,21 @@ void	recursion(t_dir *list, int flags, char *path)
 						ptr->name);
 			s2 = ft_strjoin(path, s1);
 			free(s1);
-			ft_ls(s2, flags);
+			ft_ls(s2, flags, ac);
 			free(s2);
 		}
 		ptr = ptr->next;
 	}
 }
 
-void	ft_ls(char *path, int flags)
+void	ft_ls(char *path, int flags, int ac)
 {
 	struct dirent	*de;
 	t_dir			*initial;
 	DIR				*dr;
 	t_blocks		blocks;
 
-	blocks.flags = flags;
-	blocks.total = 0;
+	initialize_blocks(&blocks, flags, ac);
 	initial = NULL;
 	de = NULL;
 	dr = opendir(path);
@@ -66,7 +65,7 @@ void	ft_ls(char *path, int flags)
 	merge_sort(&initial, flags);
 	print_output(initial, flags, path, &blocks);
 	if (flags & 4)
-		recursion(initial, flags, path);
+		recursion(initial, flags, path, ac);
 	delete_list(&initial);
 }
 
@@ -80,13 +79,13 @@ int		main(int ac, char **av)
 	check = 0;
 	flags = get_flags(ac, av);
 	if (ac == 1)
-		ft_ls(".", flags);
+		ft_ls(".", flags, ac);
 	else
 	{
 		j = add_args(args, ac, av);
 		check = execute_args(args, flags, j);
 		if (check == 0)
-			ft_ls(".", flags);
+			ft_ls(".", flags, ac);
 	}
 	return (0);
 }

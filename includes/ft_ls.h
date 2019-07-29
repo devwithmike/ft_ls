@@ -6,7 +6,7 @@
 /*   By: mimeyer <mimeyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/28 09:17:47 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/07/26 09:28:50 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/07/29 09:31:51 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,8 @@ typedef struct		s_dir
 typedef struct		s_blocks
 {
 	int				total;
-	int	flags;
+	int				flags;
+	int				count;
 }					t_blocks;
 
 
@@ -53,9 +54,9 @@ void	format_name(t_dir *ptr, int flags);
 
 int					check_flags(char c);
 void	format_normal(t_dir *ptr, int flags);
-
+void	initialize_blocks(t_blocks *blocks, int flags, int ac);
 int					isdir(const char *path);
-void				files_args(char **args, int flags);
+void				files_args(char **args, int flags, int ac);
 int					error_file(char *path);
 int					error_permission(char *path);
 int					check_errors(char *path, DIR *dr);
@@ -83,13 +84,13 @@ void				format_line(t_dir *list, char *path, int flags);
 void				format_long(t_dir *list);
 void				format_permissions(t_dir *list);
 void				delete_list(t_dir **list);
-void				print_recursion(char *path);
-void				ft_ls(char *path, int flags);
+void	print_recursion(char *path, t_blocks *blocks);
+void				ft_ls(char *path, int flags, int ac);
 void	print_blocks(t_blocks *blocks);
 void				print_list(t_dir *list, int flags, char *path);
 void				print_normal(t_dir *list, int flags);
 void	list_add(t_dir **alst, struct dirent *de, char *path, t_blocks *blocks);
-void				recursion(t_dir *list, int flags, char *path);
+void				recursion(t_dir *list, int flags, char *path, int ac);
 void	print_output(t_dir *list, int flags, char *path, t_blocks *blocks);
 void				basic_print(struct dirent *de, int flags,
 						DIR *dr);
