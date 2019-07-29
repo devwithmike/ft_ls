@@ -6,7 +6,7 @@
 /*   By: mimeyer <mimeyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/12 09:48:27 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/07/29 08:51:41 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/07/29 10:27:06 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ void	format_line(t_dir *list, char *path, int flags)
 	format_size(list);
 	convert_time(ctime(&list->time));
 	ft_putstr(" ");
-	format_name(list, flags);
+	add_colour(list, flags);
 	if (S_ISLNK(list->mode))
 		convert_nlink(path, list);
 	if (list->next != NULL)

@@ -6,7 +6,7 @@
 /*   By: mimeyer <mimeyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/17 10:52:19 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/07/26 09:33:43 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/07/29 10:26:57 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int		isdir(const char *path)
 
 void	format_normal(t_dir *ptr, int flags)
 {
-	format_name(ptr, flags);
+	add_colour(ptr, flags);
 	if (ptr->next != NULL)
 		ft_putstr("\n");
 }
