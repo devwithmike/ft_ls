@@ -6,7 +6,7 @@
 /*   By: mimeyer <mimeyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/28 09:17:47 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/07/29 10:55:12 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/07/29 11:03:41 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,7 @@ typedef struct		s_blocks
 
 
 void	format_acl(t_dir *ptr);
-void	format_uid(t_dir *list);
-void	format_gid(t_dir *list);
+void	format_id(char *id);
 void	format_name(t_dir *ptr, int flags);
 void	add_colour(t_dir *list, int flags);
 int		bg_colour(t_dir *list);
