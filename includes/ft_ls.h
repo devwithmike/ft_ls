@@ -6,7 +6,7 @@
 /*   By: mimeyer <mimeyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/28 09:17:47 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/07/29 11:03:41 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/07/29 11:51:51 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ typedef struct		s_dir
 	int				type;
 	time_t			time;
 	char			*path;
-	int				block;
 	struct s_dir	*next;
 }					t_dir;
 

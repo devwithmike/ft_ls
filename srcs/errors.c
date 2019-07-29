@@ -6,7 +6,7 @@
 /*   By: mimeyer <mimeyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 13:57:58 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/07/29 08:45:59 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/07/29 15:44:10 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	error_permission(char *path)
 		ft_putstr("ft_ls: ");
 		if (path[ft_strlen(path) - 1] != '/')
 			ft_putstr(path);
-		ft_putstr(": Permission denied");
+		ft_putstr(": Permission denied\n");
 		return (1);
 	}
 	return (0);
@@ -47,7 +47,7 @@ int	check_errors(char *path, DIR *dr)
 				return (1);
 			ft_putstr("ft_ls: ");
 			ft_putstr(path);
-			ft_putstr(": No such file or directory");
+			ft_putstr(": No such file or directory\n");
 			return (1);
 		}
 	}

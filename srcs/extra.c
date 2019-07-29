@@ -6,7 +6,7 @@
 /*   By: mimeyer <mimeyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/29 09:12:44 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/07/29 11:03:35 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/07/29 15:04:13 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	format_id(char *id)
 	int len;
 	int amount;
 
-	amount = 14;
+	amount = 10;
 	len = ft_strlen(id);
 	if (len == 0)
 		amount--;

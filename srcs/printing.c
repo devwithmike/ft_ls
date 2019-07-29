@@ -6,7 +6,7 @@
 /*   By: mimeyer <mimeyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 14:48:22 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/07/29 09:39:33 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/07/29 15:53:37 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,9 +78,7 @@ void	print_recursion(char *path, t_blocks *blocks)
 		&& (ft_strcmp(path, "..") != 0))
 	{
 		if (blocks->count > 1 && con > 0)
-		{
 			ft_putchar('\n');
-		}
 		ft_putstr(path);
 		ft_putstr(":\n");
 		con = 1;
