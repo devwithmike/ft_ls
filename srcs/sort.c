@@ -6,7 +6,7 @@
 /*   By: mimeyer <mimeyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 14:33:41 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/07/30 09:59:02 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/07/30 10:23:25 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,7 +127,7 @@ void	check_nano(int flags, t_dir *a, t_dir *b, t_dir **result)
 		(*result)->next = sorted_merge_t(a->next, b, flags);
 	}
 	else if (a->nano == b->nano)
-		sorted_merge(a, b, flags);
+		sort_nano_ascii(flags, a, b, result);
 	else
 	{
 		*result = b;

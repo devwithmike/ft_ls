@@ -6,7 +6,7 @@
 /*   By: mimeyer <mimeyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/28 09:17:47 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/07/30 10:00:21 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/07/30 10:22:35 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,8 @@ int					check_errors(char *path, DIR *dr);
 
 void				initialize_blocks(t_blocks *blocks, int flags, int ac);
 void				format_id(char *id);
+void				sort_nano_ascii(int flags, t_dir *a, t_dir *b,
+						t_dir **result);
 
 void				incorrect_flags(char c);
 int					check_flags(char c);

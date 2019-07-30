@@ -6,7 +6,7 @@
 /*   By: mimeyer <mimeyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/29 09:12:44 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/07/29 15:04:13 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/07/30 10:23:45 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,23 @@ void	format_id(char *id)
 			ft_putchar(' ');
 			len++;
 		}
+}
+
+void	sort_nano_ascii(int flags, t_dir *a, t_dir *b, t_dir **result)
+{
+	if (!(flags & 8) && (ft_strcmp(a->name, b->name)) < 0)
+	{
+		*result = a;
+		(*result)->next = sorted_merge_t(a->next, b, flags);
+	}
+	else if ((flags & 8) && (ft_strcmp(a->name, b->name)) > 0)
+	{
+		*result = a;
+		(*result)->next = sorted_merge_t(a->next, b, flags);
+	}
+	else
+	{
+		*result = b;
+		(*result)->next = sorted_merge_t(a, b->next, flags);
+	}
 }
