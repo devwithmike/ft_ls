@@ -6,7 +6,7 @@
 /*   By: mimeyer <mimeyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/05 12:09:38 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/07/30 09:01:02 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/07/30 09:55:50 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,4 +67,23 @@ void	list_add(t_dir **alst, struct dirent *de, char *path, t_blocks *blocks)
 	new = set_list(de, path, blocks);
 	new->next = *alst;
 	*alst = new;
+}
+
+void	rev_lst(t_dir **head)
+{
+	t_dir	*cur;
+	t_dir	*next;
+	t_dir	*prev;
+
+	next = NULL;
+	prev = NULL;
+	cur = *head;
+	while (cur != NULL)
+	{
+		next = cur->next;
+		cur->next = prev;
+		prev = cur;
+		cur = next;
+	}
+	*head = prev;
 }

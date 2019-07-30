@@ -6,30 +6,11 @@
 /*   By: mimeyer <mimeyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 14:33:41 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/07/30 09:22:01 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/07/30 09:59:02 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_ls.h"
-
-void	rev_lst(t_dir **head)
-{
-	t_dir	*cur;
-	t_dir	*next;
-	t_dir	*prev;
-
-	next = NULL;
-	prev = NULL;
-	cur = *head;
-	while (cur != NULL)
-	{
-		next = cur->next;
-		cur->next = prev;
-		prev = cur;
-		cur = next;
-	}
-	*head = prev;
-}
 
 t_dir	*sorted_merge(t_dir *a, t_dir *b, int flags)
 {
@@ -78,7 +59,7 @@ t_dir	*sorted_merge_t(t_dir *a, t_dir *b, int flags)
 		result->next = sorted_merge_t(a->next, b, flags);
 	}
 	else if (a->time == b->time)
-		check_nano(flags, a, b , &result);
+		check_nano(flags, a, b, &result);
 	else
 	{
 		result = b;
