@@ -6,7 +6,7 @@
 /*   By: mimeyer <mimeyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/28 09:17:47 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/07/29 11:51:51 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/07/30 09:17:37 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef struct		s_dir
 	off_t			size;
 	int				type;
 	time_t			time;
+	time_t			nano;
 	char			*path;
 	struct s_dir	*next;
 }					t_dir;
@@ -47,7 +48,8 @@ typedef struct		s_blocks
 	int				count;
 }					t_blocks;
 
-
+void	check_nano(int flags, t_dir *a, t_dir *b, t_dir **result);
+t_dir	*sorted_merge_t(t_dir *a, t_dir *b, int flags);
 void	format_acl(t_dir *ptr);
 void	format_id(char *id);
 void	format_name(t_dir *ptr, int flags);

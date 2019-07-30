@@ -6,7 +6,7 @@
 /*   By: mimeyer <mimeyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 14:33:41 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/07/23 14:49:25 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/07/30 09:22:01 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,35 @@ t_dir	*sorted_merge(t_dir *a, t_dir *b, int flags)
 	return (result);
 }
 
+t_dir	*sorted_merge_t(t_dir *a, t_dir *b, int flags)
+{
+	t_dir	*result;
+
+	result = NULL;
+	if (a == NULL)
+		return (b);
+	else if (b == NULL)
+		return (a);
+	if (!(flags & 8) && (a->time > b->time))
+	{
+		result = a;
+		result->next = sorted_merge_t(a->next, b, flags);
+	}
+	else if ((flags & 8) && (a->time < b->time))
+	{
+		result = a;
+		result->next = sorted_merge_t(a->next, b, flags);
+	}
+	else if (a->time == b->time)
+		check_nano(flags, a, b , &result);
+	else
+	{
+		result = b;
+		result->next = sorted_merge_t(a, b->next, flags);
+	}
+	return (result);
+}
+
 void	merge_sort(t_dir **head_ref, int flags)
 {
 	t_dir	*head;
@@ -77,7 +106,10 @@ void	merge_sort(t_dir **head_ref, int flags)
 	front_back_sort(head, &a, &b);
 	merge_sort(&a, flags);
 	merge_sort(&b, flags);
-	*head_ref = sorted_merge(a, b, flags);
+	if (flags & 16)
+		*head_ref = sorted_merge_t(a, b, flags);
+	else
+		*head_ref = sorted_merge(a, b, flags);
 }
 
 void	front_back_sort(t_dir *source, t_dir **front_ref, t_dir **back_ref)
@@ -99,4 +131,25 @@ void	front_back_sort(t_dir *source, t_dir **front_ref, t_dir **back_ref)
 	*front_ref = source;
 	*back_ref = slow->next;
 	slow->next = NULL;
+}
+
+void	check_nano(int flags, t_dir *a, t_dir *b, t_dir **result)
+{
+	if (!(flags & 8) && (a->nano > b->nano))
+	{
+		*result = a;
+		(*result)->next = sorted_merge_t(a->next, b, flags);
+	}
+	else if ((flags & 8) && (a->nano < b->nano))
+	{
+		*result = a;
+		(*result)->next = sorted_merge_t(a->next, b, flags);
+	}
+	else if (a->nano == b->nano)
+		sorted_merge(a, b, flags);
+	else
+	{
+		*result = b;
+		(*result)->next = sorted_merge_t(a, b->next, flags);
+	}
 }
