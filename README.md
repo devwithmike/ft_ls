@@ -5,16 +5,16 @@ FT_LS is a recreation of the unix function, ls.
 
 **Mandatory:** 100/100  
 **Bonus:** 14/25  
-**Peers:** 113% (avg)  
+**Peers:** 114% (avg)  
   
-**Total:** 113/125
+**Total:** 114/125
 
 ## Installation:
 
 To get started, clone the FT_LS repo and go into the folder:
 
 ```
-git clone https://github.com/FWMoor/ft_ls
+git clone https://github.com/MikeFMeyer/ft_ls
 cd ft_ls/
 ```
 ### Make:    
